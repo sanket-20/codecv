@@ -7,26 +7,26 @@ defineProps<{ userInfo: IUserInfo }>()
 <template>
   <div class="user-tooltip flex content-card">
     <div class="head flex">
-      <img class="mr-10" :src="userInfo.avatar" alt="头像" />
+      <img class="mr-10" :src="userInfo.avatar" alt="avatar" />
       <strong class="nick-name">
         {{ userInfo.nickName }}
       </strong>
     </div>
     <p>
-      <strong>性别：</strong>
-      {{ userInfo.sex }}生
+      <strong>gender：</strong>
+      {{ userInfo.sex }}born
     </p>
     <p>
-      <strong>院校：</strong>
+      <strong>School:</strong>
       <span>{{ userInfo.school }} -</span>
-      <span>{{ userInfo.graduation }}届</span>
+      <span>{{ userInfo.graduation }}session</span>
     </p>
     <p>
-      <strong>求职意向：</strong>
+      <strong>Career Objective:</strong>
       {{ userInfo.professional }}
     </p>
     <p>
-      <strong>所在地区：</strong>
+      <strong>Region: </strong>
       {{ userInfo.origin }}
     </p>
   </div>

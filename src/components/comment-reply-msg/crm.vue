@@ -30,14 +30,14 @@ defineEmits(['readNotification', 'queryData'])
             <span class="gray">{{ notif.commentUserInfo.nickName }}</span>
             <p class="line-2">
               <span class="gray"
-                >{{ formatTimefromNow(notif.commentContent.createTime) }}回复你：</span
+                >{{ formatTimefromNow(notif.commentContent.createTime) }}Reply to you：</span
               >
               {{ notif.commentContent.content }}
             </p>
           </div>
           <div class="reply-info">
             <div class="mb-10 flex flex-space-between">
-              <span>来自：</span>
+              <span>from：</span>
               <span>{{ formatTimefromNow(notif.replyContent.createTime) }}发布的</span>
             </div>
             <el-image
@@ -45,12 +45,12 @@ defineEmits(['readNotification', 'queryData'])
               :src="notif.replyUserInfo.avatar"
               fit="cover"
               loading="lazy"
-              alt="头像"
+              alt="avatar"
               class="mr-10 avatar"
             />
             <span>{{ notif.replyUserInfo.nickName }}</span>
             <p v-if="notif.replyContent.content" class="line-2">
-              <span>评论内容：</span>
+              <span>comments: </span>
               {{ notif.replyContent.content }}
             </p>
             <p v-else class="line-2">.....</p>
@@ -65,7 +65,7 @@ defineEmits(['readNotification', 'queryData'])
         :total="total"
       />
     </div>
-    <Empty v-else title="这是暂时还是空的~" />
+    <Empty v-else title="This is temporarily empty~~" />
   </div>
 </template>
 

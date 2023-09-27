@@ -20,7 +20,7 @@ export function useHotRank() {
   function useDetail(articleId: number) {
     router.push(`/community/detail?articleId=${articleId}`)
   }
-  // 请求一次就行
+  // Just request once
   onMounted(() => queryHotRankList())
 
   return {

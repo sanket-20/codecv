@@ -34,12 +34,12 @@ const { more, setMore } = useShowMore(props.data.length)
         />
       </div>
       <ul class="list-style-init flex operator">
-        <li class="mr-10" @click="reply(comment.commentId)">回复</li>
+        <li class="mr-10" @click="reply(comment.commentId)">reply</li>
         <li
           v-if="userInfo.uid === comment.authorId"
           @click="remove(comment.commentId, articleId, 2)"
         >
-          删除
+          delete
         </li>
       </ul>
       <Publish
@@ -54,7 +54,7 @@ const { more, setMore } = useShowMore(props.data.length)
         @re-query-comments="$emit('reQueryComments')"
       />
     </div>
-    <span v-if="more" @click="setMore" class="pointer showMore">显示全部...</span>
+    <span v-if="more" @click="setMore" class="pointer showMore">display all...</span>
   </div>
 </template>
 

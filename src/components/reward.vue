@@ -11,18 +11,18 @@ function toggle() {
 <template>
   <button class="reward btn" @click="toggle"><i class="iconfont icon-moneybagfill"></i>打赏</button>
   <ToastModal v-if="reward" :flag="reward" @close="toggle">
-    <h5>PS：该项目作为免费的开源项目使用，如果你有好的想法欢迎加入到项目中</h5>
+    <h5>PS：This project is used as a free open source project. If you have good ideas, you are welcome to join the project.</h5>
     <h5>
-      如果你觉得对你有帮助，可以请作者喝杯奶茶，非常感谢
+      If you find it helpful, you can treat the author to a cup of milk tea. Thank you very much.
       <i class="iconfont icon-emoji"></i>
     </h5>
     <div class="reward-item wechat">
-      <img src="/docs/wechat.jpg" alt="微信收款码" />
-      <h4>微信收款码</h4>
+      <img src="/docs/wechat.jpg" alt="WeChat payment code" />
+      <h4>WeChat payment code</h4>
     </div>
     <div class="reward-item alipay">
-      <img src="/docs/alipay.jpg" alt="支付宝收款码" />
-      <h4>支付宝收款码</h4>
+      <img src="/docs/alipay.jpg" alt="Alipay payment code" />
+      <h4>Alipay payment code</h4>
     </div>
   </ToastModal>
 </template>

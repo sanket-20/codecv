@@ -23,11 +23,11 @@ function genMenuBarData(root: string): Array<IMenuBarItem> {
 }
 
 function dfs(menus: Array<IMenuBarItem>, node: HTMLElement, level: number) {
-  // 是一个标题节点
+  // is a title node
   const tagName = node?.tagName.toLowerCase()
   if (node?.nodeType == 1 && tagName[0] === 'h') {
     const oMenuItem = { offsetMax: 0 } as IMenuBarItem
-    //创建子元素
+    //Create child elements
     oMenuItem.title = node.textContent + ''
     oMenuItem.level = +tagName[1]
     oMenuItem.offset = getMenuItemOffset(node)

@@ -10,13 +10,13 @@ export function useSubmit(emits: any) {
   const imgSrc = ref('')
   const codeInstance = new VerificationCode()
   let verifyCode = ''
-  // 提交修改
+  // Submit changes
   async function submit() {
     if (form.value.nPassword.trim() === '' || form.value.oPassword.trim() === '') {
-      return errorMessage('信息请填写完整!')
+      return errorMessage('Please fill in the information completely!')
     }
     if (form.value.verify.trim().toLowerCase() != verifyCode.toLowerCase()) {
-      return errorMessage('验证码不正确，请重新尝试！')
+      return errorMessage('The verification code is incorrect, please try again!')
     }
     const { userInfo } = useUserStore(),
       username = userInfo.username

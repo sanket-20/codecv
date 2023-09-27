@@ -8,7 +8,7 @@ const { hotList, useDetail } = useHotRank()
 
 <template>
   <div class="hot-list content-card">
-    <p class="hot-title slide-title">热门面经</p>
+    <p class="hot-title slide-title">Popular face sutras</p>
     <ul class="list-style-init" v-if="hotList.length">
       <li
         :key="idx"
@@ -22,7 +22,7 @@ const { hotList, useDetail } = useHotRank()
         <span :class="{ topRank: idx < 3 }">{{ numFormat(article.hot) }}</span>
       </li>
     </ul>
-    <Empty title="还没有面经，快去抢沙发吧." v-else />
+    <Empty title="No face-to-face experience yet，Go grab the sofa." v-else />
   </div>
 </template>
 

@@ -30,10 +30,10 @@ const useUserStore = defineStore('userStore', {
   state: () => ({
     userInfo: initialInfo,
     loginState: {
-      logined: false, // 登录态
+      logined: false, // Login status
       loginModel: false,
-      verify: '', // 验证码
-      verifyImg: '' // 验证码图片
+      verify: '', // Verification code
+      verifyImg: '' // Verification code picture
     },
     token: getLocalStorage(TOKEN) || ''
   }),
@@ -52,10 +52,10 @@ const useUserStore = defineStore('userStore', {
         if (res.code === 200) {
           this.loginState.logined = true
           this.loginModelToggle()
-          // 更新用户信息
+          // Update user information
           this.setUserInfo(this.userInfo, res.data)
           this.setUserInfo(userForm, res.data)
-          // 缓存重要信息
+          // Cache important information
           setLocalStorage(TOKEN, res.token)
           setLocalStorage(USERNAME, res.data.username)
           successMessage(res.msg)

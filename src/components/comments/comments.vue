@@ -15,7 +15,7 @@ const props = defineProps<{
   pageNum: number
   scrollTo: number
   total: number
-  articleAuthorId: number // 回复的当前文章的作者
+  articleAuthorId: number // Reply to the author of the current article
   commentsTotal: number
 }>()
 
@@ -26,7 +26,7 @@ const { comments } = useCommentPosition(position)
 
 <template>
   <div class="comments-container content-card">
-    <span class="tip">本页评论/回复共 {{ numFormat(total) }} 条</span>
+    <span class="tip">Total comments/replies on this page {{ numFormat(total) }} strip</span>
     <div v-if="data.length" class="comments-list mt-20 content-card" ref="comments">
       <div class="comment-item" v-for="(comment, pidx) of data" :key="pidx">
         <UserInfo :user-info="comment.authorInfo" :publish-time="comment.createTime" />
@@ -47,16 +47,16 @@ const { comments } = useCommentPosition(position)
           />
         </div>
         <ul class="list-style-init flex operator">
-          <li class="mr-10" @click="reply(comment.commentId)">回复</li>
-          <!-- <li class="mr-10">点赞</li> -->
+          <li class="mr-10" @click="reply(comment.commentId)">reply</li>
+          <!-- <li class="mr-10">like</li> -->
           <li
             v-if="userInfo.uid === comment.authorId"
             @click="remove(comment.commentId, articleId, 1)"
           >
-            删除
+            delete
           </li>
         </ul>
-        <!-- 内容输入框 -->
+        <!-- Content input box -->
         <Publish
           :article-id="articleId"
           :level="2"
@@ -68,7 +68,7 @@ const { comments } = useCommentPosition(position)
           @re-query-comments="$emit('reQueryComments')"
           v-if="currenId === comment.commentId"
         />
-        <!-- 二级回复：内容 + 回复了谁-->
+        <!-- Second level reply: content + who replied -->
         <Reply
           :data="comment.children"
           :comment-id="comment.commentId"
@@ -87,7 +87,7 @@ const { comments } = useCommentPosition(position)
       :current-page="pageNum"
       @current-change="(page: number) => $emit('pageNumChange', page)"
     />
-    <Empty v-if="!data.length" title="还没有人发表评论..." />
+    <Empty v-if="!data.length" title="No one has commented yet..." />
   </div>
 </template>
 

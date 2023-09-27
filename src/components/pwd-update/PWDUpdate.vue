@@ -7,17 +7,17 @@ const { form, imgSrc, cancel, submit, genCode } = useSubmit(emits)
 
 <template>
   <div class="pwd-update">
-    <h3>密码修改</h3>
-    <input type="password" placeholder="原密码" v-model="form.oPassword" maxLength="16" />
-    <input type="password" placeholder="新密码" v-model="form.nPassword" maxLength="16" />
-    <input type="text" placeholder="验证码" v-model="form.verify" maxLength="4" />
-    <img :src="imgSrc" alt="验证码" @click="genCode" />
+    <h3>change Password</h3>
+    <input type="password" placeholder="old password" v-model="form.oPassword" maxLength="16" />
+    <input type="password" placeholder="New Password" v-model="form.nPassword" maxLength="16" />
+    <input type="text" placeholder="Verification code" v-model="form.verify" maxLength="4" />
+    <img :src="imgSrc" alt="Verification code" @click="genCode" />
     <div class="btn-group">
-      <button class="btn primary" @click="submit">提交</button>
-      <button class="btn plain" @click="cancel">取消</button>
+      <button class="btn primary" @click="submit">Submit</button>
+      <button class="btn plain" @click="cancel">Cancel</button>
     </div>
   </div>
-  <p class="mt-20 tip">ps: 请保存好密码 切勿外传</p>
+  <p class="mt-20 tip">ps: Please keep your password and do not share it outside.</p>
 </template>
 
 <style lang="scss" scoped>

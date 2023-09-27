@@ -9,7 +9,7 @@ const service = axios.create({
   withCredentials: true,
   responseType: 'json'
 })
-// 请求拦截 统一配置
+// Request interception unified configuration
 service.interceptors.request.use(
   config => {
     // showLoading()
@@ -24,7 +24,7 @@ service.interceptors.request.use(
     return Promise.reject(new Error(err))
   }
 )
-// 统一在此处解构一层data
+// Unity deconstructs a layer of data here
 service.interceptors.response.use(
   data => {
     return data.data
@@ -51,7 +51,7 @@ export function get(url: string, params: any = {}) {
         }
       )
       .catch(err => {
-        // 弹出错误提示
+        // Pop up error message
         rejected(err)
         errorMessage(Tip.NETWORK_ERROR)
       })
@@ -72,7 +72,7 @@ export function post(url: string, data: any = {}, type?: ResponseType) {
         }
       )
       .catch(err => {
-        // 弹出错误提示
+        // Pop up error message
         errorMessage(Tip.NETWORK_ERROR)
         rejected(err)
       })

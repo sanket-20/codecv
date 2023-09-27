@@ -26,7 +26,7 @@ const useEditorStore = defineStore('editorStore', {
     writable: Boolean(getLocalStorage(WRITABLE)) || false
   }),
   actions: {
-    // 初始化编辑器内容（默认为Markdown模式）
+    // Initialize editor content (default is Markdown mode)
     initMDContent(resumeType: string) {
       const cacheKey = MARKDOWN_CONTENT + '-' + resumeType
       this.MDContent = getLocalStorage(cacheKey)
@@ -35,15 +35,15 @@ const useEditorStore = defineStore('editorStore', {
     },
     setMDContent(nv: string, resumeType: string) {
       this.MDContent = nv
-      // 处理之后的操作
+      // What to do after processing
       if (!nv) return
       setLocalStorage(`${MARKDOWN_CONTENT}-${resumeType}`, nv)
     },
-    // 切换编辑模式
+    // Switch editing mode
     setWritableMode(originHTML: HTMLElement) {
       this.writable = !this.writable
       setLocalStorage(WRITABLE, this.writable)
-      showMessageVN('您已切换至', this.writable ? '内容模式' : 'Markdown模式')
+      showMessageVN('You have switched to', this.writable ? 'content mode' : 'Markdown mode')
       if (this.writable) {
         nextTick(() => {
           originHTML = originHTML || (document.querySelector('.reference-dom') as HTMLElement)

@@ -7,19 +7,19 @@ import Empty from './empty.vue'
 let data = { ...originData }
 
 const emit = defineEmits(['select-icon'])
-// 复制图标
+// copy icon
 type Icon = (typeof data.glyphs)[0]
 const clipboard = (item: Icon) => {
-  successMessage('已复制到剪贴板，你可以直接粘贴')
+  successMessage('Copied to clipboard, you can paste directly')
   navigator.clipboard.writeText(`icon:${item.font_class} `)
   emit('select-icon', item.font_class)
 }
-// 分页功能
+// Paging function
 const iconData = ref<Icon[]>(data.glyphs.slice(0, 20))
 const pageChange = function (page: number) {
   iconData.value = data.glyphs.slice((page - 1) * 20, page * 20)
 }
-// 模糊搜索
+// fuzzy search
 const keyword = ref('')
 function search() {
   if (!keyword.value) {
@@ -38,7 +38,7 @@ function search() {
     <el-input
       type="text"
       @keydown.enter="search"
-      placeholder="按图标名称搜索"
+      placeholder="Search by icon name"
       class="mb-10"
       v-model="keyword"
     />
@@ -49,7 +49,7 @@ function search() {
         </i>
       </button>
     </div>
-    <Empty title="暂时没有该图标" v-else></Empty>
+    <Empty title="There is no such icon yet" v-else></Empty>
     <el-pagination
       v-if="iconData.length"
       :page-size="20"

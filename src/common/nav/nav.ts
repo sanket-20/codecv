@@ -1,17 +1,17 @@
 const nav = [
   {
-    name: '导入/导出',
+    name: 'Import and Export',
     multiple: true,
-    children: ['导入MD', '导出MD', '导出图片']
+    children: ['Import MD', 'Export MD', 'Export pictures']
   },
   {
-    name: '简历模板',
+    name: 'resume template',
     path: '/template',
     tooltip: false
   },
 
   {
-    name: '语法助手',
+    name: 'Grammar Assistant',
     path: '/syntax/helper',
     tooltip: false
   }

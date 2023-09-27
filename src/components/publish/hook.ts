@@ -24,7 +24,7 @@ export function useEmoji(mainContent: Ref<string>) {
     setEmoji
   }
 }
-// 评论和回复的逻辑都在这。
+// The logic of comments and replies is here.
 export function usePublishShare(
   articleId: Ref<number>,
   level: Ref<number>,
@@ -45,31 +45,31 @@ export function usePublishShare(
       return
     }
     if (!shareMainContent.value.trim()) {
-      warningMessage('你发个空内容是想干嘛呢？？？')
+      warningMessage('What do you want to do by posting empty content? ? ?')
       return
     }
     if (shareMainContent.value.length > 200) {
-      warningMessage('太多了存不下, 删到200字以内吧')
+      warningMessage('There are too many to save, so delete them to less than 200 words.')
       return
     }
     const cb = level.value == 1 ? publishComment : publishCommentReply
     const params = {
       content: shareMainContent.value.replace(/</g, '&lt;').replace(/>/g, '&gt;'),
-      authorId: userInfo.uid, // 发表这条评论的作者是谁
+      authorId: userInfo.uid, // Who is the author of this comment?
       images: images.value.join('~$^$~'),
-      level: level.value, // 几级评论
-      articleId: articleId.value, // 文章ID
-      posterCommentId: posterCommentId.value, // 楼主是谁
-      replyAuthorId: replyAuthorId.value, // 回复的那条评论是谁发表的
-      replyArticleAuthorId: replyArticleAuthorId.value, // 回复的文章是谁发表的
-      replyCommentId: replyCommentId.value, // 回复谁
-      replyCommentLevel: replyCommentLevel.value // 回复的评论是几级评论
+      level: level.value, // What level of comments
+      articleId: articleId.value, // Article ID
+      posterCommentId: posterCommentId.value, // Who is the original poster?
+      replyAuthorId: replyAuthorId.value, // Who posted the comment you replied to?
+      replyArticleAuthorId: replyArticleAuthorId.value, // Who published the reply article?
+      replyCommentId: replyCommentId.value, // Reply to whom
+      replyCommentLevel: replyCommentLevel.value // What level of comment is the reply to?
     }
     // console.log(params)
     const rest = (await cb(params)) as IResponse<unknown>
     if (rest.code == 200) {
       shareMainContent.value = ''
-      images.value.length = 0 // 清空图片内容
+      images.value.length = 0 // Clear image content
       emits('reQueryComments')
     }
     rest.code == 200 ? successMessage(rest.msg) : errorMessage(rest.msg)
@@ -90,7 +90,7 @@ export function usePickerImage() {
 
   async function pickerImage() {
     if (images.value.length >= 2) {
-      return errorMessage('最多只能上传2张图片！')
+      return errorMessage('Only 2 pictures can be uploaded at most!')
     }
     const input = document.createElement('input')
     input.setAttribute('type', 'file')

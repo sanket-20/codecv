@@ -1,21 +1,21 @@
 const homeNav = [
   {
-    name: '简历制作',
+    name: 'resume production',
     path: '/template',
     tooltip: false
   },
   // {
-  //   name: '求职社区',
+  //   name: 'job search community',
   //   path: '/community',
   //   tooltip: false
   // },
   {
-    name: '语法助手',
+    name: 'Grammar Assistant',
     path: '/syntax/helper',
     tooltip: false
   },
   {
-    name: '更新记录',
+    name: 'update record',
     path: '/update/line',
     tooltip: false
   }

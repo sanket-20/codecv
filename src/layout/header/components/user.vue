@@ -38,10 +38,10 @@ const { data, total, commentTotal, readNotification, pageNumChange } =
         class="user-creative mr-20 pointer primary"
         @click="useNavigator(router, '/community/editor')"
       >
-        写面经
+        Writing Sutra
         <i class="iconfont icon-edit font-20"></i>
       </div>
-      <!-- 消息提示 -->
+      <!-- notification -->
       <template v-if="commentTotal">
         <el-badge :value="commentTotal" class="mr-20">
           <i
@@ -55,54 +55,54 @@ const { data, total, commentTotal, readNotification, pageNumChange } =
         class="iconfont icon-message1 message hover pointer font-25 mr-10"
         @click="toggleMessageModal"
       ></i>
-      <!-- 用户信息 -->
+      <!-- User Info -->
       <span class="user-nick mr-10">{{ userInfo.nickName }}</span>
       <el-dropdown>
         <img @click="setInfoModel" class="pointer mr-10" :src="userInfo.avatar" />
         <template #dropdown>
           <el-dropdown-menu>
-            <el-dropdown-item @click="setInfoModel">个人信息</el-dropdown-item>
-            <el-dropdown-item @click="setPWDModel">修改密码</el-dropdown-item>
-            <el-dropdown-item @click="logout">退出登录</el-dropdown-item>
+            <el-dropdown-item @click="setInfoModel">personal information</el-dropdown-item>
+            <el-dropdown-item @click="setPWDModel">change Password</el-dropdown-item>
+            <el-dropdown-item @click="logout">sign out</el-dropdown-item>
           </el-dropdown-menu>
         </template>
       </el-dropdown>
     </template>
-    <span v-else class="pointer mr-10" @click="loginModelToggle">登录</span>
+    <span v-else class="pointer mr-10" @click="loginModelToggle">Log in</span>
   </div>
-  <!-- 个人信息修改 -->
+  <!-- Modification of personal information -->
   <toast-modal width="400px" :flag="infoModel" @close="setInfoModel">
     <Profile @cancel="setInfoModel" @submit="updateInfo" />
   </toast-modal>
-  <!-- 密码修改 -->
+  <!-- change Password -->
   <toast-modal width="300px" :flag="PWDModel" @close="setPWDModel">
     <PWD-update @cancel="setPWDModel" />
   </toast-modal>
-  <!-- 登录 -->
+  <!-- Log in -->
   <toast-modal @close="loginModelToggle" :flag="loginState.loginModel" width="300px">
     <div class="login" v-if="!model" data-aos="zoom-in">
-      <h3>用户登录</h3>
-      <input v-model="user.username" placeholder="用户名" />
-      <input v-model="user.password" type="password" placeholder="密码" />
-      <input v-model="user.verify" placeholder="验证码" />
+      <h3>User login</h3>
+      <input v-model="user.username" placeholder="username" />
+      <input v-model="user.password" type="password" placeholder="password" />
+      <input v-model="user.verify" placeholder="Verification code" />
       <img @click="genVerify" class="verify-code pointer" :src="loginState.verifyImg" />
-      <button class="btn primary" @click.prevent="login(user, true)">马上登录</button>
-      <button class="btn plain" @click.prevent="toggleModel">我要注册</button>
+      <button class="btn primary" @click.prevent="login(user, true)">Log in now</button>
+      <button class="btn plain" @click.prevent="toggleModel">I want to register</button>
     </div>
-    <!-- 注册 -->
+    <!-- register -->
     <div class="register" v-if="model" data-aos="zoom-in">
-      <h3>用户注册</h3>
-      <input v-model="registerUser.username" placeholder="用户名" />
-      <input v-model="registerUser.password" type="password" placeholder="密码" />
-      <input v-model="registerUser.verify" placeholder="验证码" />
+      <h3>User registration</h3>
+      <input v-model="registerUser.username" placeholder="username" />
+      <input v-model="registerUser.password" type="password" placeholder="password" />
+      <input v-model="registerUser.verify" placeholder="Verification code" />
       <img @click="genVerify" class="verify-code pointer" :src="loginState.verifyImg" />
-      <button class="btn primary" @click.prevent="login(registerUser, false)">注册</button>
-      <button class="btn plain" @click.prevent="toggleModel">去登录</button>
+      <button class="btn primary" @click.prevent="login(registerUser, false)">register</button>
+      <button class="btn plain" @click.prevent="toggleModel">Go to login</button>
     </div>
   </toast-modal>
-  <!-- 消息内容 -->
+  <!-- Message content -->
   <toast-modal @close="toggleMessageModal" :flag="messageModal" width="80%">
-    <NavBar :tabs="['评论/回复']" @tab-click="msgTabChange" />
+    <NavBar :tabs="['Comment/Reply']" @tab-click="msgTabChange" />
     <CRM
       v-if="tab == 0"
       :data="data"

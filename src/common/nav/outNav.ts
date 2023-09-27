@@ -1,26 +1,26 @@
 const outNav = [
   {
-    name: '简历制作',
+    name: 'resume production',
     path: '/template',
     tooltip: false
   },
   // {
-  //   name: '求职社区',
+  //   name: 'job search community',
   //   path: '/community',
   //   tooltip: false
   // },
   {
-    name: '语法助手',
+    name: 'Grammar Assistant',
     path: '/syntax/helper',
     tooltip: false
   },
   // {
-  //   name: '岗位推荐',
+  //   name: 'Job recommendation',
   //   path: '/recruit',
   //   tooltip: false
   // },
   {
-    name: '更新内容',
+    name: 'update content',
     path: '/update/line',
     tooltip: false
   }

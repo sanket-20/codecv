@@ -1,9 +1,9 @@
 <template>
   <div class="footer flex noto-serif-sc">
     <ul class="flex" data-aos="fade-right">
-      <strong class="title">关于项目</strong>
+      <strong class="title">About the project</strong>
       <li>
-        <a href="https://github.com/acmenlei/codecv" target="_blank">开源代码</a>
+        <a href="https://github.com/acmenlei/codecv" target="_blank">open source code</a>
       </li>
       <li>
         <a href="https://github.com/acmenlei/typenet" target="_blank">typenet</a>
@@ -13,9 +13,9 @@
       </li>
     </ul>
     <ul class="flex" data-aos="fade-right">
-      <strong class="title">作者</strong>
+      <strong class="title">author</strong>
       <li>
-        <a href="https://coderlei.netlify.app" target="_blank">个人博客</a>
+        <a href="https://coderlei.netlify.app" target="_blank">personal blog</a>
       </li>
       <li>
         <a href="https://github.com/acmenlei" target="_blank"
@@ -29,10 +29,10 @@
       </li>
     </ul>
     <ul class="flex" data-aos="fade-left">
-      <strong class="title">社交媒体</strong>
+      <strong class="title">social media</strong>
       <li>
         <a href="https://juejin.cn/user/2586468969632445" target="_blank"
-          ><i class="iconfont icon-juejin"></i> 掘金</a
+          ><i class="iconfont icon-juejin"></i> nuggets</a
         >
       </li>
       <li>
@@ -42,20 +42,20 @@
       </li>
       <li>
         <a href="https://zhihu.com/people/kuai-le-vans" target="_blank"
-          ><i class="iconfont icon-zhihu"></i> 知乎</a
+          ><i class="iconfont icon-zhihu"></i> Know almost</a
         >
       </li>
     </ul>
     <ul data-aos="fade-left">
-      <strong class="title">联系方式</strong>
+      <strong class="title">Contact information</strong>
       <ul class="flex row">
         <li>
-          <img src="@/assets/img/wechat.jpg" alt="作者微信" />
-          <strong>作者微信</strong>
+          <img src="@/assets/img/wechat.jpg" alt="Author WeChat" />
+          <strong>Author WeChat</strong>
         </li>
         <li>
-          <img src="@/assets/img/qqgroup.jpeg" alt="QQ群问题咨询" />
-          <strong>QQ群交流</strong>
+          <img src="@/assets/img/qqgroup.jpeg" alt="QQ group problem consultation" />
+          <strong>QQ group communication</strong>
         </li>
       </ul>
     </ul>

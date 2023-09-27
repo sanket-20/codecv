@@ -23,7 +23,7 @@ function handlerClick(MenuItem: IMenuBarItem) {
 
 <template>
   <div class="o_navigator_menu" :style="style">
-    <h3 class="o_menu_title">{{ menuTitle || '目录' }}</h3>
+    <h3 class="o_menu_title">{{ menuTitle || 'Table of contents' }}</h3>
     <div class="o_menu_bar_container" v-if="oMenuBarTitleData.length">
       <MenuBarItem
         :key="idx"
@@ -32,7 +32,7 @@ function handlerClick(MenuItem: IMenuBarItem) {
         @click="handlerClick(MenuItem)"
       />
     </div>
-    <Empty v-else title="暂无标题" />
+    <Empty v-else title="No title yet" />
   </div>
 </template>
 

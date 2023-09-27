@@ -18,7 +18,7 @@ export function getLocalStorage(key: string) {
   }
   const result: LocalStorageValue<unknown> = JSON.parse(value)
 
-  // 如果过期了就删掉
+  // If it expires, delete it
   if (result.expires < currentTime) {
     localStorage.removeItem(key)
     return false

@@ -7,7 +7,7 @@ import useUserStore from '@/store/modules/user'
 import { nextTick, Ref, ref, watch } from 'vue'
 import { type IResponse } from '@@types/type'
 
-// 回复所需要的操作
+// Action required to reply
 export function useReply(emits: any) {
   const { userInfo } = useUserStore()
   const currenId = ref(-1)
@@ -49,7 +49,7 @@ export function useReply(emits: any) {
     currenId
   }
 }
-// 展示更多
+// Show more
 export function useShowMore(count: number) {
   const more = ref<boolean>(count > 1)
 
@@ -61,10 +61,10 @@ export function useShowMore(count: number) {
     setMore
   }
 }
-// 获取当前评论的具体页数和位置
+// Get the specific page number and location of the current review
 export function useCommentPosition(position: Ref<number>) {
   const comments = ref()
-  // 点击通知后进行评论定位
+  // Click on the notification to locate comments
   watch(
     () => position.value,
     () => {
@@ -79,7 +79,7 @@ export function useCommentPosition(position: Ref<number>) {
         })
       } catch (e) {
         console.log(e)
-        errorMessage('出了点错，请刷新后重新尝试～')
+        errorMessage('Something went wrong, please refresh and try again~')
       }
     }
   )

@@ -48,10 +48,10 @@ const { picker, setEmoji, togglePicker } = useEmoji(shareMainContent)
         :style="{ background }"
         class="content-edit main-content"
         v-model="shareMainContent"
-        placeholder="内容控制在200字以内～"
+        placeholder="Content should be controlled within 200 words~"
       />
     </div>
-    <!-- 图片插入位置 -->
+    <!-- Picture insertion position -->
     <div class="covers-container community-comment-cover" v-if="images.length">
       <div class="mr-10 cover-item-container" :key="idx" v-for="(image, idx) in images">
         <el-image
@@ -85,10 +85,10 @@ const { picker, setEmoji, togglePicker } = useEmoji(shareMainContent)
           :hide-search="true"
           :hide-group-names="true"
           @select="setEmoji"
-          :static-texts="{ skinTone: '换肤' }"
+          :static-texts="{ skinTone: 'Peel' }"
         />
       </div>
-      <button class="btn primary" @click="publish">发表</button>
+      <button class="btn primary" @click="publish">publish</button>
     </div>
   </div>
 </template>

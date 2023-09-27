@@ -4,16 +4,16 @@
 // const socket = io("ws://localhost:3001");
 
 // socket.on('chat message', (msg) => {
-//   console.log("客户端接收到消息",msg)
+//   console.log("The client receives the message",msg)
 // })
 
 // socket.on("connect", () => {
-//   console.log('链接了')
+//   console.log('Linked')
 // })
 </script>
 
 <template>
-  <span>聊天室</span>
+  <span>chatroom</span>
 </template>
 
 <style lang="scss" scoped></style>

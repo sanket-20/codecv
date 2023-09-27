@@ -11,19 +11,19 @@ const ruleFormRef = ref<FormInstance>(),
   uploadInput = ref()
 const rules = reactive<FormRules>({
   nickName: [
-    { required: true, message: '请输入昵称', trigger: 'blur' },
-    { min: 1, max: 16, message: '1～16字', trigger: 'blur' }
+    { required: true, message: 'Please enter a nickname', trigger: 'blur' },
+    { min: 1, max: 16, message: '1～16Character', trigger: 'blur' }
   ],
   school: [
-    { required: true, message: '请输入输入你所就读的院校', trigger: 'blur' },
-    { min: 4, max: 20, message: '4～20字', trigger: 'blur' }
+    { required: true, message: 'Please enter the institution you are studying in', trigger: 'blur' },
+    { min: 4, max: 20, message: '4～20Character', trigger: 'blur' }
   ],
-  sex: [{ required: true, message: '请选择性别', trigger: 'change' }],
-  professional: [{ required: true, message: '请选择意向岗位', trigger: 'blur' }],
-  graduation: [{ required: true, message: '请选择毕业时间', trigger: 'blur' }],
+  sex: [{ required: true, message: 'Please select gender', trigger: 'change' }],
+  professional: [{ required: true, message: 'Please select your intended position', trigger: 'blur' }],
+  graduation: [{ required: true, message: 'Please select graduation time', trigger: 'blur' }],
   origin: [
-    { required: true, message: '请输入你所在的地区', trigger: 'blur' },
-    { max: 10, min: 2, message: '2～10字', trigger: 'blur' }
+    { required: true, message: 'Please enter your region', trigger: 'blur' },
+    { max: 10, min: 2, message: '2～10Character', trigger: 'blur' }
   ]
 })
 
@@ -47,7 +47,7 @@ const uploadAvatar = async function () {
   <el-form ref="ruleFormRef" :model="userForm" :rules="rules" label-width="100px" status-icon>
     <el-form-item label-width="80px">
       <label for="user_avatar_upload">
-        <img class="pointer" :src="userForm.avatar" alt="头像" />
+        <img class="pointer" :src="userForm.avatar" alt="avatar" />
       </label>
       <input
         type="file"
@@ -57,32 +57,32 @@ const uploadAvatar = async function () {
         @change="uploadAvatar"
       />
     </el-form-item>
-    <el-form-item label="性别" prop="sex" required>
+    <el-form-item label="gender" prop="sex" required>
       <el-radio-group v-model="userForm.sex">
-        <el-radio label="男" />
-        <el-radio label="女" />
+        <el-radio label="male" />
+        <el-radio label="female" />
       </el-radio-group>
     </el-form-item>
-    <el-form-item label="用户昵称" prop="nickName" required>
-      <el-input class="input" v-model="userForm.nickName" placeholder="网上冲浪的昵称" />
+    <el-form-item label="User's Nickname" prop="nickName" required>
+      <el-input class="input" v-model="userForm.nickName" placeholder="Internet surfing nicknames" />
     </el-form-item>
-    <el-form-item label="毕业院校" prop="school" required>
-      <el-input class="input" v-model="userForm.school" placeholder="你所就读的院校" />
+    <el-form-item label="graduated school" prop="school" required>
+      <el-input class="input" v-model="userForm.school" placeholder="the school you attend" />
     </el-form-item>
-    <el-form-item label="意向岗位" prop="professional" required>
-      <el-select v-model="userForm.professional" placeholder="选择你的意向岗位">
+    <el-form-item label="Intended position" prop="professional" required>
+      <el-select v-model="userForm.professional" placeholder="Choose your intended position">
         <el-option v-for="(prof, idx) in professionals" :key="idx" :label="prof" :value="prof" />
       </el-select>
     </el-form-item>
-    <el-form-item label="毕业时间" required prop="graduation">
-      <el-date-picker v-model="userForm.graduation" type="year" placeholder="毕业时间" />
+    <el-form-item label="Graduation Time" required prop="graduation">
+      <el-date-picker v-model="userForm.graduation" type="year" placeholder="graduation time" />
     </el-form-item>
-    <el-form-item label="所在地区" prop="origin" required>
+    <el-form-item label="area" prop="origin" required>
       <el-input class="input" v-model="userForm.origin" />
     </el-form-item>
     <el-form-item>
-      <el-button type="primary" @click="submitForm(ruleFormRef)">提交修改</el-button>
-      <el-button @click="$emit('cancel')">取消</el-button>
+      <el-button type="primary" @click="submitForm(ruleFormRef)">Submit changes</el-button>
+      <el-button @click="$emit('cancel')">Cancel</el-button>
     </el-form-item>
   </el-form>
 </template>
