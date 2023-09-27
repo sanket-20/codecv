@@ -18,7 +18,7 @@ router.beforeEach((to, from, next) => {
     if (!token) {
       const { loginModelToggle } = useUserStore()
       next({ ...from })
-      loginModelToggle() // 需要登录
+      loginModelToggle() // Login required
       return
     }
   }

@@ -1,6 +1,6 @@
 import { markdownToHTML } from 'markdown-transform-html'
 
-// 简历模块拆分 将每个子模块内容进行整合
+// Split the resume module and integrate the content of each sub-module
 function moduleCombine(DOMStr: string) {
   const fragment = document.createElement('div')
   fragment.innerHTML = DOMStr
@@ -24,7 +24,7 @@ function moduleCombine(DOMStr: string) {
       container ? container.appendChild(node) : result.appendChild(node)
     }
   }
-  // 最后的也添加
+  // Also add the last
   container && result.appendChild(container)
   if (hasMainLayout) {
     searchStart.parentNode?.replaceChild(result, searchStart)

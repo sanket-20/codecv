@@ -10,14 +10,14 @@ defineEmits(['export-md', 'import-md', 'export-picture'])
     <li v-for="(navItem, idx) in nav" :key="idx">
       <template v-if="navItem.children">
         <el-dropdown class="el-dropdown">
-          <!-- 父菜单 -->
+          <!-- Parent menu -->
           <div class="el-dropdown-link">{{ navItem.name }}</div>
           <template #dropdown>
             <el-dropdown-menu>
               <el-dropdown-item v-for="(subNavItem, sidx) in navItem.children" :key="sidx">
-                <!-- 子菜单 -->
-                <label for="import_md" v-if="subNavItem.startsWith('导入')">
-                  导入MD
+                <!-- Submenu -->
+                <label for="import_md" v-if="subNavItem.startsWith('import')">
+                  Import MD
                   <input
                     accept=".md"
                     id="import_md"
@@ -25,7 +25,7 @@ defineEmits(['export-md', 'import-md', 'export-picture'])
                     @change="$emit('import-md', $event)"
                   />
                 </label>
-                <span v-else-if="subNavItem.includes('导出MD')" @click="$emit('export-md')">{{
+                <span v-else-if="subNavItem.includes('exportMD')" @click="$emit('export-md')">{{
                   subNavItem
                 }}</span>
                 <span v-else @click="$emit('export-picture')">{{ subNavItem }}</span>
@@ -34,12 +34,12 @@ defineEmits(['export-md', 'import-md', 'export-picture'])
           </template>
         </el-dropdown>
       </template>
-      <!-- 不是级联菜单走这里 -->
+      <!-- If this is not a cascading menu, go here -->
       <template v-else>
         <router-link :to="navItem.path || ''">{{ navItem.name }}</router-link>
       </template>
     </li>
-    <li class="use-guide" @click="refreshGuide()">开启引导</li>
+    <li class="use-guide" @click="refreshGuide()">Turn on guide</li>
   </ul>
 </template>
 

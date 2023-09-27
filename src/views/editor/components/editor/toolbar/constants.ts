@@ -2,134 +2,134 @@ export const toolbarConfig = [
   {
     icon: 'bold',
     command: 'bold',
-    tip: '加粗文本'
+    tip: 'bold text'
   },
   {
     icon: 'italic',
     command: 'italic',
-    tip: '斜体文本'
+    tip: 'italicized text'
   },
   {
     icon: 'link',
     command: 'insertLink',
-    tip: '添加链接/替换选中文本'
+    tip: 'Add link/replace selected text'
   },
   {
     icon: 'unorderedlist',
     command: 'insertUnorderedList',
-    tip: '无序列表'
+    tip: 'unordered list'
   },
   {
     icon: 'orderedlist',
     command: 'insertOrderedList',
-    tip: '有序列表'
+    tip: 'ordered list'
   },
   {
     icon: 'emoji',
     command: 'insertIcon',
-    tip: '插入图标'
+    tip: 'insert icon'
   },
   {
     icon: 'info',
     command: 'insertUserInfo',
-    tip: '插入个人信息布局'
+    tip: 'Insert personal information layout'
   },
   {
     icon: 'columns',
     command: 'multiColumns',
-    tip: '插入多列布局'
+    tip: 'Insert multi-column layout'
   },
   {
     icon: 'table',
     command: 'insertTable',
-    tip: '插入表格'
+    tip: 'Insert table'
   },
   {
     icon: 'code',
     command: 'insertCode',
-    tip: '插入技能点'
+    tip: 'Insert skill points'
   },
   {
     icon: 'reply',
     command: 'breakLayout',
-    tip: '跳出布局在新行编写'
+    tip: 'Break out of layout and write on new line'
   },
   {
     icon: 'write',
     command: 'toMarkdownMode',
-    tip: '切换至Markdown模式'
+    tip: 'Switch to Markdown mode'
   }
 ]
 
 export const headings = [
-  { label: '普通文本', value: '普通文本' },
-  { label: '一级标题', value: 'h1' },
-  { label: '二级标题', value: 'h2' },
-  { label: '三级标题', value: 'h3' },
-  { label: '四级标题', value: 'h4' },
-  { label: '五级标题', value: 'h5' },
-  { label: '六级标题', value: 'h6' }
+  { label: 'Normal text', value: 'Normal text' },
+  { label: 'Level 1 title', value: 'h1' },
+  { label: 'Second-level title', value: 'h2' },
+  { label: 'Level 3 title', value: 'h3' },
+  { label: 'Level 4 title', value: 'h4' },
+  { label: 'Five-level title', value: 'h5' },
+  { label: 'Level 6 title', value: 'h6' }
 ]
 
 export const markdownModeToolbarConfig = [
   {
     icon: 'bold',
     command: 'insertBold',
-    tip: '加粗'
+    tip: 'bold'
   },
   {
     icon: 'italic',
     command: 'insertItalic',
-    tip: '斜体'
+    tip: 'italic'
   },
   {
     icon: 'unorderedlist',
     command: 'insertUnorderedlist',
-    tip: '无序列表'
+    tip: 'Unordered list'
   },
   {
     icon: 'orderedlist',
     command: 'insertOrderedlist',
-    tip: '有序列表'
+    tip: 'ordered list'
   },
   {
     icon: 'link',
     command: 'insertLink',
-    tip: '链接'
+    tip: 'Link'
   },
   {
     icon: 'image',
     command: 'insertAvatar',
-    tip: '插入证件照格式'
+    tip: 'Insert ID photo format'
   },
   {
     icon: 'emoji',
     command: 'insertIcon',
-    tip: '插入图标'
+    tip: 'Insert icon'
   },
   {
     icon: 'info',
     command: 'insertHeadLayout',
-    tip: '插入个人信息布局'
+    tip: 'Insert personal information layout'
   },
   {
     icon: 'practice',
     command: 'insertMainLayout',
-    tip: '插入主体内容布局'
+    tip: 'Insert body content layout'
   },
   {
     icon: 'columns',
     command: 'insertMultiColumns',
-    tip: '插入多列布局'
+    tip: 'Insert multi-column layout'
   },
   {
     icon: 'table',
     command: 'insertTable',
-    tip: '插入表格'
+    tip: 'Insert table'
   },
   {
     icon: 'write',
     command: 'toContentMode',
-    tip: '切换至内容模式'
+    tip: 'Switch to content mode'
   }
 ]

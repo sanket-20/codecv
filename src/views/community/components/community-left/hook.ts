@@ -12,7 +12,7 @@ export function useTab(conditions: ICommunityCondition, conditionQuery: () => vo
   function toggleTab(idx: number) {
     tab.value = tabs[idx]
     conditions.tab = idx
-    // 切换就要重新计算pageNum了
+    // Switching requires recalculating pageNum.
     conditions.pageNum = 1
     conditionQuery()
   }
@@ -35,8 +35,8 @@ export function useData() {
     tab: 0,
     uid: userInfo.uid
   })
-  // 无限滚动
-  async function queryList() {
+// infinite scroll
+async function queryList() {
     if (noMore.value) {
       return
     }
@@ -52,7 +52,7 @@ export function useData() {
       noMore.value = true
     }
   }
-  // 条件查询
+  // Conditional query
   async function conditionQuery() {
     if (conditions.tab == 2) {
       if (!isLogin()) {
@@ -60,7 +60,7 @@ export function useData() {
         loginModelToggle()
         return
       }
-      conditions.uid = userInfo.uid // 只看我自己的
+      conditions.uid = userInfo.uid // Only look at my own
     }
     loading.value = true
     const res = (await queryCommunity(conditions)) as IResponse<IArticle[]>
@@ -73,25 +73,25 @@ export function useData() {
       noMore.value = true
     }
   }
-  // 点击专业锚点查询
+  // Click on professional anchor query
   function queryProfessional(professional: string) {
     if (professional != conditions.professional) {
       conditions.professional = professional
       conditionQuery()
     }
   }
-  // 删除文章
+  // Delete article
   function removeArticle(idx: number) {
     data.value.splice(idx, 1)
   }
-  // 重置子查询
+  // reset subquery
   function resetSub() {
     conditions.pageNum = 1
     conditions.keyword = ''
     conditions.professional = ''
     conditionQuery()
   }
-  // 搜索
+  // search
   function searchSub() {
     conditions.pageNum = 1
     conditionQuery()

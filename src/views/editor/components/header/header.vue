@@ -22,10 +22,10 @@ const { open, toggle } = useSwitch()
 
 <template>
   <div id="header" class="noto-serif-sc">
-    <el-tooltip content="返回上一页">
+    <el-tooltip content="Return to previous page">
       <i class="iconfont icon-back font-20 hover" @click="$router.back()"></i>
     </el-tooltip>
-    <label for="resume-name-input">简历名称：</label>
+    <label for="resume-name-input">Resume name:</label>
     <input id="resume-name-input" type="text" v-model="fileName" />
     <nav-menu
       @export-md="exportFile('md')"
@@ -34,16 +34,16 @@ const { open, toggle } = useSwitch()
     />
     <ExportTotal />
     <Reward />
-    <button class="exporter server-export btn" @click="exportFile('dynamic')">导出PDF</button>
-    <button class="exporter local-export btn" @click="exportFile('native')">备用导出</button>
+    <button class="exporter server-export btn" @click="exportFile('dynamic')">Export PDF</button>
+    <button class="exporter local-export btn" @click="exportFile('native')">Alternate export</button>
     <div class="operator">
-      <el-tooltip content="给项目贡献代码" placement="bottom-end">
+      <el-tooltip content="Contribute code to the project" placement="bottom-end">
         <i
           class="iconfont icon-github github font-25"
           @click="wOpen('https://github.com/acmenlei/markdown-resume-to-pdf')"
         ></i>
       </el-tooltip>
-      <el-tooltip content="问题反馈" placement="bottom-end">
+      <el-tooltip content="Problem Feedback" placement="bottom-end">
         <i class="iconfont icon-comment problem font-25" @click="toggle"></i>
       </el-tooltip>
       <theme-toggle />

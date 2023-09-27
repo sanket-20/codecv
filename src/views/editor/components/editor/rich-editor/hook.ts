@@ -2,7 +2,7 @@ import useEditorStore from '@/store/modules/editor'
 import { queryDOM } from '@/utils'
 import { resumeDOMStruct2Markdown } from '@/utils/dom2md'
 import { nextTick, onActivated, ref } from 'vue'
-// 使用编辑模式
+// Use edit mode
 export function useToggleEditorMode(resumeType: string) {
   const editorStore = useEditorStore(),
     DOMTree = ref<HTMLElement>()

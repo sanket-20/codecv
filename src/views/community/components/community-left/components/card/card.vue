@@ -26,7 +26,7 @@ const { useLike, useRemove, useDetail, useEditor } = useOperator(articleId, emit
     <p class="intro line-4" @click="useDetail(article)">
       {{ article.introduce }}
     </p>
-    <!-- 图片插入 -->
+    <!-- Picture insertion -->
     <div class="covers-container" v-if="covers.length">
       <el-image
         :key="idx"
@@ -53,18 +53,18 @@ const { useLike, useRemove, useDetail, useEditor } = useOperator(articleId, emit
           {{ numFormat(article.commentTotal) }}
         </span>
         <span @click="useEditor" v-if="hasAuthor">
-          <el-tooltip placement="bottom" content="编辑">
+          <el-tooltip placement="bottom" content="edit">
             <i class="iconfont icon-edit font-20"></i>
           </el-tooltip>
         </span>
         <span @click="useRemove" v-if="hasAuthor">
-          <el-tooltip placement="bottom" content="删除">
+          <el-tooltip placement="bottom" content="delete">
             <i class="iconfont icon-delete font-20"></i>
           </el-tooltip>
         </span>
         <span class="visit-people">
           <i class="iconfont icon-browse font-20"></i>
-          浏览量 {{ numFormat(article.hot) }}
+          Views {{ numFormat(article.hot) }}
         </span>
       </div>
       <span class="tag pointer" @click="$emit('queryProfessional', article.professional)"

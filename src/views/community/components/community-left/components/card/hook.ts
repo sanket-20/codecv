@@ -13,11 +13,11 @@ export function useOperator(articleId: Ref<number>, emits: any, hasClick: Ref<bo
 
   async function useLike() {
     if (!isLogin()) {
-      errorMessage('请先登录！')
+      errorMessage('please log in first!')
       return
     }
     if (hasClick.value) {
-      warningMessage('你已经赞过了，不用重复点～')
+      warningMessage('You have already liked it, no need to repeat it~')
       return
     }
     const { userInfo } = useUserStore()

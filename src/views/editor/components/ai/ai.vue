@@ -7,7 +7,7 @@
       :width="200"
       trigger="hover"
       style="font-size: 14px"
-      content="Hello，我是你的AI助手小C 🤩，请问我能帮你什么？"
+      content="Hello, I am your AI assistant Xiao C 🤩, how can I help you?"
     >
       <template #reference>
         <svg

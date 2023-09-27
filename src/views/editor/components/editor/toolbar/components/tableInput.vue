@@ -9,7 +9,7 @@ const row = ref(2)
 
 function confirm() {
   if (!col.value || !row.value) {
-    warningMessage('请填写有效的数字!')
+    warningMessage('Please fill in valid numbers!')
     return
   }
   emit('confirm', col.value, row.value)
@@ -17,14 +17,14 @@ function confirm() {
 </script>
 
 <template>
-  <h3>插入表格行列数</h3>
+  <h3>Insert the number of rows and columns in the table</h3>
   &nbsp;
-  <el-input v-model="col" type="number" placeholder="请输入列数"></el-input>
+  <el-input v-model="col" type="number" placeholder="Please enter the number of columns"></el-input>
   &nbsp;
-  <el-input v-model="row" type="number" placeholder="请输入行数"></el-input>
+  <el-input v-model="row" type="number" placeholder="Please enter the number of rows"></el-input>
   &nbsp;
   <br />
-  <button class="btn primary pointer hover" @click.stop="confirm">确定</button>
+  <button class="btn primary pointer hover" @click.stop="confirm">Confirm</button>
 </template>
 
 <style lang="scss" scoped></style>

@@ -6,113 +6,114 @@ import { getLocalStorage, setLocalStorage } from '@/common/localstorage'
 const driverObj = driver({
   popoverClass: 'popover-container',
   showProgress: true,
-  nextBtnText: '下一步',
-  prevBtnText: '上一步',
-  doneBtnText: '开始使用',
+  nextBtnText: 'Next',
+  prevBtnText: 'Previous step',
+  doneBtnText: 'Get started',
   steps: [
     {
       element: '.editor-toolbar',
       popover: {
-        title: '创作工具栏',
-        description: '你可以使用该工具栏快速编写简历排版'
+        title: 'Creating Toolbar',
+        description: 'You can use this toolbar to quickly format your resume'
       }
     },
     {
       element: '.icon-write',
       popover: {
-        title: '编辑模式切换',
+        title: 'Edit mode switch',
         description:
-          '现支持两种模式，你可以使用 <strong style="color: var(--strong-color)">markdown</strong> 或 <strong style="color: var(--strong-color)">富文本</strong> 的方式来编写，不用担心切换后数据丢失，因为它们之间的数据是同步的～'
+          'Two modes are now supported, you can use <strong style="color: var(--strong-color)">markdown</strong> or <strong style="color: var(--strong-color)"> Rich text</strong>writing method, there is no need to worry about data loss after switching, because the data between them is synchronized~'
       }
     },
     {
       element: '.operator-level2',
       popover: {
-        title: '简历工具栏',
+        title: 'Resume Toolbar',
         description:
-          '你可以通过这些工具来调整你想要看到的简历效果，接下来我将给你介绍一下每一个工具的使用'
+          'You can use these tools to adjust the effect you want to see on your resume. Next, I will introduce you to the use of each tool'
       }
     },
     {
       element: '.icon-adjust',
       popover: {
-        title: '调节元素边距',
+        title: 'Adjust element margins',
         description:
-          '如果你对简历中某个元素的排版并不满意，你可以通过该功能对指定元素的上下边距进行调整'
+          'If you are not satisfied with the layout of a certain element in your resume, you can use this function to adjust the top and bottom margins of the specified element'
       }
     },
     {
       element: '.icon-zhengjian',
       popover: {
-        title: '证件照',
-        description: '此功能为上传证件照'
+        title: 'ID photo',
+        description: 'This function is to upload ID photos'
       }
     },
 
     {
       element: '.icon-diy',
       popover: {
-        title: '自定义CSS',
+        title: 'Custom CSS',
         description:
-          '如果你有能力编写CSS，那么你可以在此处编辑CSS来调整简历效果，注意，CSS都需要写在.jufe类下确保生效'
+          'If you have the ability to write CSS, you can edit the CSS here to adjust the effect of your resume. Note that the CSS needs to be written under the .jufe class to ensure it takes effect'
       }
     },
     {
       element: '.font-color-picker',
-      popover: { title: '自定义字体颜色', description: '简历的颜色可以由你自己自由控制' }
+      popover: { title: 'Customized font color', description: 'The color of your resume can be freely controlled by yourself' }
     },
     {
       element: '.main-color-picker',
-      popover: { title: '自定义主色调', description: '同样，主色调也可以自由调整' }
+      popover: { title: 'Customize the main color', description: 'Similarly, the main color can also be adjusted freely' }
     },
     {
       element: '.icon-refresh',
       popover: {
-        title: '重置内容',
-        description: '如果你想清空所有改动回到最初的样子，请使用该功能，该操作不可逆！'
+        title: 'Reset content',
+        description: 'If you want to clear all changes and return to the original appearance, please use this function. This operation is irreversible! '
       }
     },
     {
       element: '.auto-one-page',
       popover: {
-        title: '智能一页',
-        description: '若你的简历内容超出了一页又或者不足一页，那么你可以使用该功能优化简历排版'
+        title: 'Smart Page',
+        description: 'If your resume content exceeds one page or is less than one page, you can use this function to optimize the layout of your resume'
       }
     },
     {
       element: '.follow-roll',
       popover: {
-        title: '跟随滚动',
-        description: '同时要滚动左右两个容器太麻烦了？把这个打开吧！'
+        title: 'Follow scroll',
+        description: 'Is it too troublesome to scroll the left and right containers at the same time? Turn this one on! '
       }
     },
+
     {
       element: '.lh-select',
       popover: {
-        title: '调整行距',
-        description: '调整行距在控制简历页数时非常有用！'
+        title: 'Adjust line spacing',
+        description: 'Adjusting line spacing is very useful when controlling the number of resume pages! '
       }
     },
     {
       element: '.font-select',
       popover: {
-        title: '设置字体',
-        description: '你可以根据自己喜好选择字体效果～'
+        title: 'Set font',
+        description: 'You can choose the font effect according to your preference~'
       }
     },
     {
       element: '.el-dropdown-link',
       popover: {
-        title: '导出简历内容',
+        title: 'Export resume content',
         description:
-          '如果你想保存你的简历内容，请在此处<strong style="color: var(--strong-color)">导出MD</strong>文件，想继续编写时导入即可'
+          'If you want to save your resume content, please export the MD</strong> file here<strong style="color: var(--strong-color)">and import it when you want to continue writing'
       }
     },
     {
       element: '.use-guide',
       popover: {
-        title: '使用引导',
-        description: '如果你想再次查看使用指引，请点击这里'
+        title: 'Using the guide',
+        description: 'If you want to view the instructions again, please click here'
       }
     }
   ]

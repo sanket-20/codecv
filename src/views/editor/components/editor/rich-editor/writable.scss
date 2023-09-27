@@ -13,7 +13,7 @@
       flex: 1;
     }
   }
-  // 只有是两列布局的时候才起作用
+  // This only works when the layout is two columns
   & > .flex-layout {
     align-items: flex-start;
   }
@@ -75,7 +75,7 @@
     border-radius: 10px;
     position: relative;
 
-    img[alt*='个人头像'] {
+    img[alt*='profile picture'] {
       width: 30mm;
       height: 30mm;
       border-radius: 5px;

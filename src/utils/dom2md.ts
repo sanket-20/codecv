@@ -6,8 +6,7 @@ interface IResumeDOMStruct {
   whiteSpace: number
 }
 
-const TAB_SIZE = 2 // 一个tab为2个空格大小
-
+const TAB_SIZE = 2 // A tab is 2 spaces in size
 function isElementNode(node: Node) {
   return node.nodeType === node.ELEMENT_NODE
 }
@@ -16,7 +15,7 @@ function getTagName(node: HTMLElement) {
   return node?.tagName.toLowerCase()
 }
 
-// 处理HTML结构转markdown内容
+// Process HTML structure and convert markdown content
 export function resumeDOMStruct2Markdown({
   parent,
   node,
@@ -27,21 +26,21 @@ export function resumeDOMStruct2Markdown({
   let result = ''
 
   if (node.nodeType === Node.ELEMENT_NODE) {
-    // 递归遍历子节点
+    // Recursively traverse child nodes
     const classList = (node as HTMLElement).classList
-    const tagName = <string>getTagName(<HTMLElement>node) // 获取标签名
-    const isDeepList = // 判断是否是嵌套的列表
+    const tagName = <string>getTagName(<HTMLElement>node) // Get tag name
+    const isDeepList = // Determine whether it is a nested list
         ['ul', 'ol'].includes(<string>getTagName(<HTMLElement>node)) &&
         getTagName(<HTMLElement>parent) == 'li',
       children = node.childNodes
     if (classList.contains('flex-layout')) {
-      result += '::: start\n' // 如果是指定的类名，则添加起始语法到结果字符串中
+      result += '::: start\n' // If it is the specified class name, add the starting syntax to the result string
     } else if (classList.contains('iconfont')) {
-      result += `icon:${classList[1].slice(5)} ` // 如果是指定的类名，则添加 icon 语法到结果字符串中
+      result += `icon:${classList[1].slice(5)} ` // If it is the specified class name, add icon syntax to the result string
     } else if (classList.contains('head-layout')) {
-      result += '::: headStart\n' // 如果是指定的类名，则添加头部起始语法到结果字符串中
+      result += '::: headStart\n' // If it is the specified class name, add the header starting syntax to the result string
     } else if (classList.contains('main-layout')) {
-      result += '::: mainStart\n' // 同上
+      result += '::: mainStart\n' // Same as above
     } else if (tagName === 'a') {
       result += '['
     } else if (['b', 'strong'].includes(tagName)) {
@@ -49,7 +48,7 @@ export function resumeDOMStruct2Markdown({
     } else if (tagName[0] === 'h') {
       result += '#'.repeat(+tagName[1]) + ' '
     } else if (tagName === 'li') {
-      //ps：需要处理可能出现的子集嵌套问题
+      //ps：Need to deal with possible subset nesting issues
       const isOrder = getTagName(<HTMLElement>node.parentElement) == 'ol'
       result += ' '.repeat(whiteSpace) + `${!isOrder ? '- ' : uid + '. '}`
     } else if (['td', 'th'].includes(tagName)) {
@@ -63,37 +62,37 @@ export function resumeDOMStruct2Markdown({
     } else if (tagName === 'blockquote') {
       result += '> '
     }
-    // 处理子内容
+    // Handle sub-content
     for (let i = 0; i < children.length; i++) {
       const isElement = isElementNode(children[i])
-      // 递归遍历子节点
+      // Recursively traverse child nodes
       const _isOrderItem = isElement && getTagName(<HTMLElement>children[i].parentElement) == 'ol'
-      // 如果是嵌套list 那么需要换行显示了
+      // If it is a nested list, it needs to be displayed in a new line.
       isDeepList && (result += '\n')
       result += resumeDOMStruct2Markdown({
         parent: node,
         node: children[i],
         latest: i === children.length - 1,
         uid: _isOrderItem ? ++uid : 0,
-        whiteSpace: isDeepList ? whiteSpace + TAB_SIZE : whiteSpace // 处理列表的嵌套解析
+        whiteSpace: isDeepList ? whiteSpace + TAB_SIZE : whiteSpace // Handling nested parsing of lists
       })
     }
     if (classList.contains('flex-layout')) {
-      result += '::: end' // 如果是指定的类名，则添加结束语法到结果字符串中
+      result += '::: end' // If it is the specified class name, add the closing syntax to the result string
     } else if (classList.contains('head-layout')) {
-      result += '::: headEnd' // 如果是指定的类名，则添加头部结束语法到结果字符串中
+      result += '::: headEnd' // If it is the specified class name, add the header closing syntax to the result string
     } else if (classList.contains('main-layout')) {
-      result += '::: mainEnd' // 同上
+      result += '::: mainEnd' // Same as above
     } else if (classList.contains('flex-layout-item') && !latest) {
-      result += '\n:::' // 如果是指定的类名，则添加内容语法到结果字符串中
+      result += '\n:::' // If it is the specified class name, add content syntax to the result string
     } else if (tagName == 'a') {
       result += `](${(node as HTMLElement).getAttribute('href')})`
     } else if (['b', 'strong'].includes(tagName)) {
       result += '**'
     } else if (tagName == 'img') {
       const alt = (node as HTMLImageElement).alt
-      const isAvatar = alt?.includes('个人头像')
-      result += `![${isAvatar ? '个人头像' : alt}](${(node as HTMLImageElement).src})`
+      const isAvatar = alt?.includes('profile picture')
+      result += `![${isAvatar ? 'profile picture' : alt}](${(node as HTMLImageElement).src})`
     } else if (tagName === 'tr') {
       result += '|'
     } else if (['th', 'td'].includes(tagName)) {
@@ -109,9 +108,9 @@ export function resumeDOMStruct2Markdown({
       result += '\n'
     }
   } else {
-    // 处理文本节点 清空前后空格
+    // Process text nodes and clear the spaces before and after
     const content = (node as Text).textContent || ''
-    result += content // 将文本内容添加到结果字符串中
+    result += content // Add text content to the result string
   }
   return result
 }

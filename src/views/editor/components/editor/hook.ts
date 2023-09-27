@@ -15,7 +15,7 @@ export function reactiveWritable(resumeType: string) {
   }
 }
 
-// 左右移动伸缩布局
+// Move the telescopic layout left and right
 export function useMoveLayout() {
   const left = ref(550)
   let flag = false
@@ -56,7 +56,7 @@ export function injectWritableModeAvatarEvent(
     nextTick(() => {
       const node = queryDOM('.writable-edit-mode') as HTMLElement
       setTimeout(() => {
-        const avatar = node.querySelector('img[alt*="个人头像"]')
+        const avatar = node.querySelector('img[alt*="profile picture"]')
         if (avatar) {
           avatar.addEventListener('click', async function () {
             const file = await getPickerFile({
@@ -64,7 +64,7 @@ export function injectWritableModeAvatarEvent(
               accept: 'image/png, image/jpeg,image/jpg, '
             })
             const reader = new FileReader()
-            reader.readAsDataURL(file) // 暂时使用base64方案
+            reader.readAsDataURL(file) // Temporarily use the base64 solution
             reader.onload = function (event) {
               setAvatar(event.target?.result as string)
             }

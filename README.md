@@ -1,6 +1,6 @@
 # codecv
 
-只 `fork` 不 `star` 真的很没品，这是一款使用 `markdown` 制作简历的工具，它可以将你编写的`markdown` 简历转换为 `PDF`，完全免费。
+This is a tool for creating resumes using `markdown`. It can convert your written `markdown` resume into a `PDF` format, supports multiple templates, is completely free, and runs on love.
 
 <div style="font-size: 1.5rem;">
   <a href="./README.md">中文</a> |
@@ -8,80 +8,80 @@
 </div>
 </br>
 
-[线上地址 1](https://codecv.top) [线上地址 2](https://codeleilei.gitee.io/markdown2pdf)
+[Online 1](https://codecv.top) [Online 2](https://codeleilei.gitee.io/markdown2pdf)
 
-> 声明：此项目发布于 GitHub/Gitee，免费且作为开源学习使用，使用业余时间进行持续开发，部署请在网站显眼位置注明原作者及原仓库地址，未经作者允许请勿用于商业用途！
+> Declaration: This project is published on GitHub/Gitee, free and as an open source learning use, use spare time for continuous development, deployment please indicate the original author and the original warehouse address in a prominent place on the website, do not use for commercial purposes without the author's permission!
 
-## 😄 Docker 快速部署
+## 😄 Docker deploy
 
-你可以直接使用我已经构建好的镜像来运行
+You can directly run using the image I have already built.
 
 ```sh
 docker run -d -t -p 8080:80 --name codecv --restart=always docker.io/wenyang0/codecv:latest
 ```
 
-或者，如果您愿意，也可以自己手动编译。
+Or, you can manually compile it yourself if you prefer.
 
 ```sh
-#下载代码
+#clone the code
 git clone https://github.com/acmenlei/codecv.git
 
-#docker 编译
+#docker build
 cd codecv/
 docker build -t codecv:v1 .
 
-#启动服务
+#start server
 docker run -d -t -p 8080:80 --name codecv --restart=always codecv:v1
 ```
 
-最后,打开你的浏览器访问服务的地址 http://serverIP:8080 即可（模板请自行编写与设计）
+Finally, open your browser and access the service's address at http://serverIP:8080
 
-## 🤩 效果预览
+## 🤩 Preview of the result
 
-<p>简历模板</p>
+<p>Resume template</p>
 
 <img style="max-width: 1000px" src="./docs/templates.webp" alt="模板" />
 
-<p>简历编辑和暗黑主题</p>
+<p>Resume editing and dark themes</p>
 
 <img style="max-width: 1000px" src="./docs/editor.webp" alt="编辑页" />
 
-<p>内置多种矢量图标</p>
+<p>Built-in multiple vector ICONS</p>
 
 <img style="max-width: 1000px" src="./docs/iconfont.webp" alt="矢量图标" />
 
-## ✊🏻 待实现功能
+## ✊🏻 Features to be implemented
 
-[✓] 移动端适配
+[✓] Mobile device adaptation
 
-[✓] 内容模式体验优化
+[✓] Improved content mode experience
 
-[✓] 模板设计（持续更新... 欢迎为仓库贡献模板）
+[✓] Template design (continuously updating... contributions to the repository templates are welcome)
 
-## 🤔 常见问题
+## 🤔 Common issues
 
-[语法问题请查看使用指南](https://codeleilei.gitee.io/markdown2pdf/#/syntax/helper)
+[Please refer to the user guide for grammar-related questions.](https://codeleilei.gitee.io/markdown2pdf/#/syntax/helper)
 
-**Q**: 为什么导出 `PDF` 后乱码？
+**Q**: Why export `PDF` after garbled code?
 
-**A**: 可能是缓存了旧的字体，请点击预览顶部工具栏中的重置简历内容进行重置，当然重置前请保证内容你已经保存
+**A**: It may be that the old font is cached, please click the reset resume content in the toolbar at the top of the preview to reset, of course, please ensure that you have saved the content before resetting.
 
-**Q**: 为什么导出失败？
+**Q**: Why does the export fail?
 
-**A**: 目前服务部署在 `netlify serverless` 服务上，因为是国外服务器，访问容易出错，请多尝试几遍，当然你也可以使用本地导出 `PDF` 替换
+**A**: At present, the service is deployed on the `Netlify Serverless` service, because it is a foreign server, access is easy to error, please try several times, of course, you can also use the local export `PDF` replacement.
 
-## 🙏 赞助
+## 🙏 Sponsor
 
-如果你觉得这个项目对你有帮助，并且情况允许的话，可以给我一点点支持，总之非常感谢支持～
+If you think this project is helpful to you and circumstances permit, you can give me a little support. In short, thank you very much for your support ~
 
 <div style="display: flex; gap: 20px;">
 	<div style="text-align: center">
 		<p>WeChat</p>
-		<img style="width: 165px" src="./docs/wechat.jpg" alt="微信" />
+		<img style="width: 165px" src="./docs/wechat.jpg" alt="WeChat" />
 	</div>
 	<div style="text-align: center">
 		<p>Alipay</p>
-		<img style="width: 150px" src="./docs/alipay.jpg" alt="支付宝" />
+		<img style="width: 150px" src="./docs/alipay.jpg" alt="Alipay" />
 	</div>
 </div>
 

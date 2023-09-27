@@ -24,8 +24,8 @@
   margin: 0 auto;
 }
 
-/* 头像大小 */
-.markdown-transform-html img[alt*='个人头像'] {
+/* Avatar size */
+.markdown-transform-html img[alt*='profile picture'] {
   width: 26mm;
   height: 32mm;
   position: relative;
@@ -128,7 +128,7 @@
   opacity: 0.3;
 }
 
-/* 单个代码块`code` */
+/* single code block`code` */
 .markdown-transform-html code.single-code {
   color: var(--markdown-primary-bg-color);
   padding: 2px 8px;

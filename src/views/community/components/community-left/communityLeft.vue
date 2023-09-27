@@ -33,7 +33,7 @@ onActivated(() => {
       <NavBar :tabs="tabs" @tab-click="toggleTab" />
       <div>
         <el-select
-          placeholder="岗位方向"
+          placeholder="Job direction"
           v-model="conditions.professional"
           @change="searchSub"
           class="mr-10"
@@ -42,12 +42,12 @@ onActivated(() => {
         </el-select>
         <el-input
           v-model="conditions.keyword"
-          placeholder="搜索面经"
+          placeholder="Search for interviews"
           class="mr-10"
           style="width: 190px"
         ></el-input>
-        <button @click="searchSub" class="btn primary">搜索</button>
-        <button @click="resetSub" class="btn plain">重置</button>
+        <button @click="searchSub" class="btn primary">search</button>
+        <button @click="resetSub" class="btn plain">reset</button>
       </div>
     </div>
     <div v-if="data.length" class="article-list" v-infinite-scroll="queryList">
@@ -59,13 +59,13 @@ onActivated(() => {
         v-for="(article, idx) in data"
         :article="article"
       />
-      <p v-if="loading">正在加载..</p>
-      <p v-if="noMore">暂时没有更多了～</p>
+      <p v-if="loading">loading..</p>
+      <p v-if="noMore">No more for now~</p>
     </div>
-    <!-- 社区公告 -->
+    <!-- Community Announcements -->
     <div v-else>
       <Notice />
-      <Empty title="还没有人发布面经，你来做第一个吧～" />
+      <Empty title="No one has published an interview yet, you should be the first~" />
     </div>
   </div>
 </template>

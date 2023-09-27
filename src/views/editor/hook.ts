@@ -25,7 +25,7 @@ export const get = getLocalStorage,
     CUSTOM_MARKDOWN_PRIMARY_BG_COLOR,
     MARKDOWN_FONT,
     LINE_HEIGHT,
-    ADJUST_RESUME_MARGIN_TOP, // priority 3 (数字越大 优先级越低)
+    ADJUST_RESUME_MARGIN_TOP, // priority 3 (the larger the number, the lower the priority)
     AUTO_ONE_PAGE, // priority 2
     CUSTOM_CSS_STYLE // priority 1
   ]
@@ -47,7 +47,7 @@ export function useRenderHTML(resumeType: Ref<string>) {
       useThrottleFn(() => splitPage(renderDOM.value), 50)()
     }
   )
-  // 刷新页面（这里是一个比较有问题的点）
+  // Refresh the page (this is a more problematic point)
   watch(
     () => resumeType.value,
     () => {
@@ -61,7 +61,7 @@ export function useRenderHTML(resumeType: Ref<string>) {
 
 export function useResumeType() {
   const route = useRoute()
-  //初始化也需要填上值 否则后续更新不一致会导致刷新死循环
+  //Initialization also needs to fill in the value, otherwise subsequent updates will be inconsistent and cause an infinite refresh loop.
   const resumeType = ref(route.query.type ? String(route.query.type) : '10front_end')
   onActivated(() => {
     resumeType.value = route.query.type ? String(route.query.type) : '10front_end'
@@ -70,12 +70,12 @@ export function useResumeType() {
     resumeType
   }
 }
-// 导出简历｜markdown内容
+//Export resume｜markdown content
 export function useDownLoad(type: Ref<string>) {
   const router = useRouter(),
     editorStore = useEditorStore(),
     { showLoading, closeLoading } = useLoading()
-  // 导出前处理PDF中的样式
+  // Process styles in PDF before exporting
   const exportPreHandler = async () => {
     const html = queryDOM('.jufe') as HTMLElement,
       htmlStyles = getComputedStyle(html)
@@ -83,17 +83,17 @@ export function useDownLoad(type: Ref<string>) {
       'background'
     )}; font-size:${htmlStyles.getPropertyValue('font-size')}; }`
     const resetStyle = ` * { margin: 0; padding: 0; box-sizing: border-box; }`
-    // 获取简历模板的样式
+    // Get the style of the resume template
     let style = '',
       linkURL = 'none'
     if (isDev()) {
-      // 生产环境使用动态导入 生产环境使用link的方式引入（解决生产default属性不暴露的问题）
+      // The production environment uses dynamic import. The production environment uses link to import (to solve the problem of production default attributes not being exposed)
       style = await importCSS(type.value)
     } else {
       const linkStyle = document.querySelector('link[href*="/css/style"]') as HTMLLinkElement
       linkURL = linkStyle?.href || 'none'
     }
-    // 处理自定义生成的样式
+    // Handle custom generated styles
     for (const attr of styleAttrs) {
       const styleContent = document.head.querySelector(`style[${attr}-${type.value}]`)?.textContent
       if (!styleContent) continue
@@ -102,12 +102,12 @@ export function useDownLoad(type: Ref<string>) {
     style = resetStyle + resumeBgColor + style
     return { style, link: linkURL, content: html }
   }
-  // 导出PDF & 图片
+  // Export PDF & images
   const downloadDynamic = async (isPDF: boolean, fileName?: string) => {
     const { content: html, style, link } = await exportPreHandler()
     const content = html.cloneNode(true) as HTMLElement
     !isPDF && ensureEmptyPreWhiteSpace(content)
-    showLoading('正在导出请耐心等待...')
+    showLoading('Exporting, please wait patiently...')
     try {
       const pdfData = await resumeExport({
         content: content.outerHTML,
@@ -120,12 +120,12 @@ export function useDownLoad(type: Ref<string>) {
       const _fileName = (fileName || document.title) + (isPDF ? '.pdf' : '.png')
       const fileType = 'application/' + isPDF ? 'pdf' : 'png'
       downloadOfBuffer(buffer, _fileName, fileType)
-      successMessage('导出成功～')
+      successMessage('Export successful~')
     } catch (e: any) {
       const errorMsg =
         e.message == 'Failed to fetch'
-          ? '国内导出易出错 请重新尝试 有条件的打开梯子后重试或使用备用导出'
-          : '导出出错 请先尝试备用导出方案'
+          ? 'Domestic export is error-prone, please try again. If possible, open the ladder and try again or use backup export'
+          : 'Export error, please try an alternative export solution first'
       errorMessage(errorMsg)
     }
     closeLoading()
@@ -141,7 +141,7 @@ export function useDownLoad(type: Ref<string>) {
     const url = URL.createObjectURL(blob)
     download(url, document.title + '.md')
     URL.revokeObjectURL(url)
-    successMessage('导出成功~')
+    successMessage('Export successful~')
   }
   return {
     downloadMD,
@@ -154,17 +154,17 @@ export function useImportMD(resumeType: string) {
   function importMD(file: File) {
     const { writable } = useEditorStore()
     if (writable) {
-      return warningMessage('请先切换到Markdown模式')
+      return warningMessage('Please switch to Markdown mode first')
     }
     const reader = new FileReader(),
       { setMDContent } = useEditorStore()
     reader.readAsText(file, 'utf-8')
     reader.onload = function (event) {
-      successMessage('导入成功~')
+      successMessage('Import successful~')
       setMDContent((event.target?.result as string) || '', resumeType)
     }
     reader.onerror = function () {
-      errorMessage('导入失败!')
+      errorMessage('Import failed!')
     }
   }
   return {
@@ -173,20 +173,20 @@ export function useImportMD(resumeType: string) {
 }
 
 export function useAvatar(resumeType: string) {
-  const matchAvatarSlot = /!\[个人头像\]\(.*\)/
+  const matchAvatarSlot = /!\[Personal avatar\]\(.*\)/
   function setAvatar(path: string) {
     const { MDContent, setMDContent } = useEditorStore()
     if (!matchAvatarSlot.test(MDContent)) {
-      warningMessage('上传前请确保你想上传的位置在编辑器中存在 ![个人头像](...) 此关键字')
+      warningMessage('Before uploading, please make sure the location you want to upload exists in the editor! [Personal avatar](...) this keyword')
       return
     }
-    const newContent = MDContent.replace(matchAvatarSlot, `![个人头像](${path})`)
+    const newContent = MDContent.replace(matchAvatarSlot, `![Personal avatar](${path})`)
     setMDContent(newContent, resumeType)
-    successMessage('头像上传成功，如果你想修改为网络图片，你可直接修改对应的链接！')
-    // 可能还需要处理可编辑模式中的头像
+    successMessage('The avatar is uploaded successfully. If you want to change it to an online picture, you can directly modify the corresponding link!')
+    // You may also need to handle avatars in editable mode
     const writableDOM = document.querySelector('.writable-edit-mode')
     if (writableDOM) {
-      const avatar: HTMLImageElement | null = writableDOM.querySelector('img[alt*=个人头像]')
+      const avatar: HTMLImageElement | null = writableDOM.querySelector('img[alt*=personal avatar]')
       avatar && (avatar.src = path)
     }
   }
@@ -201,7 +201,7 @@ export function ensureResetClickedTarget() {
   clickedTarget.value = null
 }
 
-// 备用导出按钮
+// Alternate export button
 export function useShowExport() {
   const showExport = ref(false)
 

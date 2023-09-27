@@ -11,7 +11,7 @@ export function reset() {
   // clickedTarget.value = null
 }
 
-// 内容模式：点击超链接的时候设置弹出框的链接信息
+// Content mode: Set the link information of the pop-up box when clicking a hyperlink
 export function setClickedLinkURL(target: HTMLElement) {
   link.value = target.getAttribute('href') || ''
 }
@@ -22,7 +22,7 @@ export function setClickedLinkText(target: HTMLElement) {
 export function useLinkInput(emit: any) {
   function confirm() {
     if (!link.value || !linkText.value) {
-      warningMessage('请填写完整!')
+      warningMessage('Please fill in the complete!')
       return
     }
     emit('confirm', link.value, linkText.value)

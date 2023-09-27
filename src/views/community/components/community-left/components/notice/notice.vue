@@ -4,23 +4,23 @@ import wechat from '@/assets/img/wechat.jpg'
 
 const defaultUserInfo = {
   uid: 0,
-  nickName: '磊磊磊磊磊',
+  nickName: 'Leilei Leilei',
   username: 'coderlei',
-  sex: '男',
-  professional: '前端开发工程师',
+  sex: 'male',
+  professional: 'Front-end development engineer',
   graduation: '2023',
-  school: '江西财经大学',
+  school: 'Jiangxi University of Finance and Economics',
   avatar: 'https://codeleilei.gitee.io/blog/avatar.jpg',
-  origin: '江西南昌'
+  origin: 'Nanchang, Jiangxi'
 }
 </script>
 
 <template>
   <article class="pointer">
     <user-info :user-info="defaultUserInfo" />
-    <h3>《关于社区暂时停止服务的公告》</h3>
+    <h3>"Announcement on Temporary Suspension of Community Services"</h3>
     <p class="intro line-4">
-      各位兄弟姐妹，之前的服务器已经到期了，所以社区暂时就不提供了，但是数据都是在的，以后恢复正常之后账号都是可以正常使用的！简历服务也是可以正常使用的，别说我跑路了😅！有问题或者有更好的建议可以联系我的微信，也欢迎更多志同道合的朋友一起来维护这个项目！
+      Dear brothers and sisters, the previous server has expired, so the community will not provide it for the time being, but the data is still there, and the account can be used normally after it returns to normal in the future! The resume service can also be used normally, don’t say I ran away😅! If you have any questions or better suggestions, you can contact me on WeChat. More like-minded friends are welcome to maintain this project together!
     </p>
     <div class="covers-container">
       <el-image
@@ -47,10 +47,10 @@ const defaultUserInfo = {
         </span>
         <span class="visit-people">
           <i class="iconfont icon-browse font-20"></i>
-          浏览量 {{ numFormat(99999) }}
+          Views {{ numFormat(99999) }}
         </span>
       </div>
-      <span class="tag pointer">#社区公告</span>
+      <span class="tag pointer">#Community Announcements</span>
     </div>
   </article>
 </template>

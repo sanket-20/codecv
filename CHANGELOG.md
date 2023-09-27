@@ -2,9 +2,9 @@
 
 `2023-04-23`
 
-- 支持两种编辑模式(内容模式 & markdown 模式)，解决部分用户 markdown 语法门槛的问题. 内容模式目前处于试用阶段，可能出现一些问题（如果出现问题请转到 markdown 模式进行编辑后再重试）.
-- 新增上边距调节器，你可以使用该工具调整简历中元素的上边距.
-- 调整 UI 布局.
+- Supports two editing modes (content mode & markdown mode) to solve the problem of markdown syntax threshold for some users. Content mode is currently in the trial stage and some problems may occur (if problems occur, please go to markdown mode to edit and try again) .
+- Added top margin adjuster, you can use this tool to adjust the top margin of elements in your resume.
+- Adjust UI layout.
 
 ## v1.3.4
 
@@ -12,4 +12,4 @@
 
 ### Feature
 
-- 新增简历模板
+- Add resume template

@@ -5,7 +5,7 @@ import { clickedTarget, ensureResetClickedTarget } from '../../../hook'
 import { reset } from './components/linkInput/hook'
 import { createText, queryDOM } from '@/utils'
 
-// 标题级别控制
+// Title level control
 export const level = ref('普通文本')
 export function useHeading(emit: any) {
   function setHeading() {
@@ -29,11 +29,11 @@ export function useHeading(emit: any) {
   }
   return { setHeading, level }
 }
-// 图标选择
+// Icon selection
 export const selectIcon = ref(false)
 export function insertIcon(iconName: string, emit: any) {
   selectIcon.value = !selectIcon.value
-  // 内容模式：直接点击Icon进行替换的情况
+  // Content mode: Click directly on the Icon to replace it
   if (clickedTarget.value) {
     clickedTarget.value.className = `iconfont icon-${iconName}`
     emit('content-change')
@@ -45,11 +45,11 @@ export function insertIcon(iconName: string, emit: any) {
   reductionSelection(icon)
   emit('content-change')
 }
-// 插入链接
+// Insert link
 export const linkFlag = ref(false)
 export function insertLink(url: string, text: string, emit: any) {
   linkFlag.value = !linkFlag.value
-  // 内容模式：直接点击编辑超链接的情况
+  // Content mode: Directly click on the edit hyperlink
   if (clickedTarget.value) {
     clickedTarget.value.setAttribute('href', url)
     clickedTarget.value.textContent = text
@@ -65,7 +65,7 @@ export function insertLink(url: string, text: string, emit: any) {
   emit('content-change')
 }
 
-// 多列布局
+// multi-column layout
 export const MulFlag = ref(false)
 export function insertMulticolumn(column: string, emit: any) {
   MulFlag.value = !MulFlag.value
@@ -80,14 +80,14 @@ export function insertMulticolumn(column: string, emit: any) {
     )
     .join('')
   const multiColumnsHTML = `<div class='flex-layout'>${placeholders}</div><br>`
-  // 创建一个包含多列布局的临时div元素
+  // Create a temporary div element containing a multi-column layout
   const temp = document.createElement('div')
   temp.innerHTML = multiColumnsHTML
   const multiColumnsContainer = <Node>temp.firstChild
   reductionSelection(multiColumnsContainer)
   emit('content-change')
 }
-// 插入表格
+// Insert table
 export const tableFlag = ref(false)
 export function InsertTable(col: string, row: string, emit: any) {
   tableFlag.value = !tableFlag.value
@@ -107,7 +107,7 @@ export function InsertTable(col: string, row: string, emit: any) {
     rowStr += `<tr>${body}</tr>`
   }
   const tableHTML = `<thead><tr>${thead}</tr></thead><tbody>${rowStr}</tbody>`
-  // 创建一个表格
+  // Create a form
   const table = document.createElement('table')
   table.innerHTML = tableHTML
   reductionSelection(table)
@@ -117,23 +117,23 @@ export function InsertTable(col: string, row: string, emit: any) {
 export function InsertUserInfo() {
   const info = document.createElement('div')
   info.innerHTML =
-    "<div class='head-layout'><h1>在此处可以编辑个人信息...</h1></div><br /><p>这是容器外部,要写在外面的内容从这里开始写...</p>"
+    "<div class='head-layout'><h1>You can edit personal information here...</h1></div><br /><p>This is the content outside the container, and should be written outside. Start writing from here...</p>"
   reductionSelection(info)
 }
-// 插入技能点（单个代码块）
+//Insert skill points (single code block)
 export function insertCode() {
-  // 创建一个包含多列布局的临时div元素
+  // Create a temporary div element containing a multi-column layout
   const code = document.createElement('span')
   code.innerHTML = `<code class='single-code'>xxx</code>&nbsp;`
   reductionSelection(code)
 }
-// 跳出布局容器
+// Jump out of the layout container
 export function breakLayout() {
   const p = document.createElement('p')
   p.setAttribute('breakLayout', 'true')
   let parentElement = getSelection()?.getRangeAt(0)?.commonAncestorContainer as HTMLElement,
     child = null
-  while (parentElement && parentElement.nodeType != Node.ELEMENT_NODE) {
+  while (parentElement && parentElement.nodeType != Node.ELEMENT_NODE) ​​{
     child = parentElement
     parentElement = parentElement.parentNode as HTMLElement
   }
@@ -151,28 +151,29 @@ export const checkMouseSelect = useThrottleFn(function () {
   const selection = getSelection()
   const range = selection?.getRangeAt(0)
   let parentElement = range?.commonAncestorContainer
-  while (parentElement && parentElement.nodeType != Node.ELEMENT_NODE) {
+  while (parentElement && parentElement.nodeType != Node.ELEMENT_NODE) ​​{
     parentElement = parentElement.parentNode as Node
   }
   const tagName = (<HTMLElement>parentElement).tagName.toLowerCase()
   if (tagName[0] == 'h') {
     level.value = tagName
   } else {
-    level.value = '普通文本'
+    level.value = 'Normal text'
   }
 }, 1000)
 
-// 内容模式事件处理
+
+//Content mode event handling
 export function useToolBarConfig(emit: any) {
   const editorStore = useEditorStore()
   let editor: HTMLElement
 
-  // 处理工具栏命令
+  // Handle toolbar commands
   function handleCommand(event: MouseEvent) {
     const buttons = (event.target as Element).closest('button[data-command]')
     if (!buttons) return
     event.preventDefault()
-    ensureResetClickedTarget() // 确保点击替换的对象已经重置
+    ensureResetClickedTarget() // Ensure that the clicked replacement object has been reset
     const command = buttons.getAttribute('data-command') as string
     switch (command) {
       case 'insertIcon':
@@ -194,7 +195,7 @@ export function useToolBarConfig(emit: any) {
         break
       case 'insertLink':
         linkFlag.value = !linkFlag.value
-        // 修改
+        // Revise
         reset()
         cursorPosition = saveCursorPosition()
         break
@@ -211,68 +212,68 @@ export function useToolBarConfig(emit: any) {
     ;['insertUserInfo', 'insertCode', 'breakLayout'].includes(command) && emit('content-change')
     editor.focus()
   }
-  // 键盘回车事件
-  const keyboardEvent = useThrottleFn(function (event: KeyboardEvent) {
-    const selection = getSelection() as Selection
-    const focusNode = <HTMLElement>selection.focusNode
-    if (
-      editorStore.writable &&
-      event.key == 'Enter' &&
-      focusNode.tagName?.toLowerCase() == 'blockquote'
-    ) {
-      const br = document.createElement('br')
-      selection.setPosition(br, 0)
-      focusNode.parentElement?.replaceChild(br, focusNode) // 删除当前节点
-      editor.focus()
-    }
-  }, 100)
+ //Keyboard enter event
+ const keyboardEvent = useThrottleFn(function (event: KeyboardEvent) {
+  const selection = getSelection() as Selection
+  const focusNode = <HTMLElement>selection.focusNode
+  if (
+    editorStore.writable &&
+    event.key == 'Enter' &&
+    focusNode.tagName?.toLowerCase() == 'blockquote'
+  ) {
+    const br = document.createElement('br')
+    selection.setPosition(br, 0)
+    focusNode.parentElement?.replaceChild(br, focusNode) // Delete the current node
+    editor.focus()
+  }
+}, 100)
 
-  onMounted(() => {
-    editor = <HTMLElement>queryDOM('.writable-edit-mode')
-    document.addEventListener('click', handleCommand)
-    editor.addEventListener('keydown', keyboardEvent)
-  })
+onMounted(() => {
+  editor = <HTMLElement>queryDOM('.writable-edit-mode')
+  document.addEventListener('click', handleCommand)
+  editor.addEventListener('keydown', keyboardEvent)
+})
 
-  onUnmounted(() => {
-    document.removeEventListener('click', handleCommand)
-    editor.removeEventListener('keydown', keyboardEvent)
-  })
+onUnmounted(() => {
+  document.removeEventListener('click', handleCommand)
+  editor.removeEventListener('keydown', keyboardEvent)
+})
 }
 
 function reductionSelection(target: Node) {
-  const selection = getSelection()
-  const range = selection?.getRangeAt(0).cloneRange()
-  if (range?.commonAncestorContainer.nodeName.toLowerCase() === 'button') {
-    return
-  }
-  range?.deleteContents()
-  range?.insertNode(target)
-  // 还原Selection对象
-  selection?.removeAllRanges()
-  range?.setStartAfter(target)
-  range?.collapse(true)
-  selection?.addRange(<Range>range)
+const selection = getSelection()
+const range = selection?.getRangeAt(0).cloneRange()
+if (range?.commonAncestorContainer.nodeName.toLowerCase() === 'button') {
+  return
+}
+range?.deleteContents()
+range?.insertNode(target)
+//Restore the Selection object
+selection?.removeAllRanges()
+range?.setStartAfter(target)
+range?.collapse(true)
+selection?.addRange(<Range>range)
 }
 
 let cursorPosition: {
-  startContainer: Node | undefined
-  startOffset: number | undefined
-  endContainer: Node | undefined
-  endOffset: number | undefined
+startContainer: Node | undefined
+startOffset: number | undefined
+endContainer: Node | undefined
+endOffset: number | undefined
 } | null
 function saveCursorPosition() {
-  const selection = getSelection()
-  const range = selection?.getRangeAt(0)
-  const startContainer = range?.startContainer
-  const startOffset = range?.startOffset
-  const endContainer = range?.endContainer
-  const endOffset = range?.endOffset
-  return {
-    startContainer,
-    startOffset,
-    endContainer,
-    endOffset
-  }
+const selection = getSelection()
+const range = selection?.getRangeAt(0)
+const startContainer = range?.startContainer
+const startOffset = range?.startOffset
+const endContainer = range?.endContainer
+const endOffset = range?.endOffset
+return {
+  startContainer,
+  startOffset,
+  endContainer,
+  endOffset
+}
 }
 
 function restoreCursorPosition() {
@@ -286,7 +287,7 @@ function restoreCursorPosition() {
   cursorPosition = null
 }
 
-/* markdown 模式工具栏事件处理 */
+/* markdown mode toolbar event handling */
 export function markdownModeToolbarCommandHandler(command: string, emit: any) {
   switch (command) {
     case 'insertBold':
@@ -340,31 +341,31 @@ function getCurrentRanger() {
 
 export function markdownModeInsertBold() {
   const range = getCurrentRanger()
-  range?.insertNode(createText(`**示例文字**`))
+  range?.insertNode(createText(`**Example text**`))
 }
 
 export function markdownModeInsertItalic() {
   const range = getCurrentRanger()
-  range?.insertNode(createText(`*示例文字*`))
+  range?.insertNode(createText(`*Sample text*`))
 }
 
 export function markdownModeInsertUnorderedList() {
   const range = getCurrentRanger()
-  range?.insertNode(createText(`- 无序列表项`))
+  range?.insertNode(createText(`- unordered list item`))
 }
 
 export function markdownModeInsertOrderedList() {
   const range = getCurrentRanger()
-  range?.insertNode(createText(`1. 有序列表项`))
+  range?.insertNode(createText(`1. Ordered list item`))
 }
 
 export function markdownModeInsertLink() {
   const range = getCurrentRanger()
-  range?.insertNode(createText(`[示例文字](https://github.com/acmenlei)`))
+  range?.insertNode(createText(`[Sample text](https://github.com/acmenlei)`))
 }
 export function markdownModeInsertAvatar() {
   const range = getCurrentRanger()
-  range?.insertNode(createText(`![个人头像](https://codeleilei.gitee.io/blog/avatar.jpg)`))
+  range?.insertNode(createText(`![Personal avatar](https://codeleilei.gitee.io/blog/avatar.jpg)`))
 }
 export function markdownModeInsertIcon(iconName: string) {
   selectIcon.value = false
@@ -373,14 +374,14 @@ export function markdownModeInsertIcon(iconName: string) {
 }
 export function markdownModeInsertHeadLayout() {
   const range = getCurrentRanger()
-  range?.insertNode(createText(`::: headStart\n在这块区域你可以填写你的个人信息\n::: headEnd`))
+  range?.insertNode(createText(`::: headStart\nIn this area you can fill in your personal information\n::: headEnd`))
 }
 
 export function markdownModeInsertMainLayout() {
   const range = getCurrentRanger()
   range?.insertNode(
     createText(
-      `::: mainStart\n如果你需要对你的主体内容做调整，你可以把你的主体内容写在这块区域内\n**PS：此布局在一个模板中只允许出现一次**\n::: mainEnd`
+      `::: mainStart\nIf you need to adjust your main content, you can write your main content in this area\n**PS: This layout is only allowed to appear once in a template**\ n:::mainEnd`
     )
   )
 }
@@ -392,7 +393,7 @@ export function markdownModeInsertMultiColumnsLayout(column: string) {
   let content = '::: start\n',
     i
   for (i = 0; i < +column; i++) {
-    content += `第${i + 1}列`
+    content += `Column ${i + 1}`
     if (i < +column - 1) {
       content += '\n:::\n'
     }
@@ -408,14 +409,14 @@ export function markdownModeInsertTable(column: string, row: string) {
     tbody = ''
   const range = getCurrentRanger()
   for (let i = 0; i < +column; i++) {
-    thead += '列名 | '
+    thead += 'Column name | '
   }
   thead = thead.trim()
   thead += '\n'
 
   for (let i = 0; i < +row; i++) {
     for (let j = 0; j < +column; j++) {
-      tbody += '| 内容 '
+      tbody += '| content '
     }
     tbody = (tbody + '|').trim()
     tbody += '\n'

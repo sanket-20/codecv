@@ -4,7 +4,7 @@ import { UploadConfig } from '@textbus/editor'
 import { errorMessage } from '../common/message'
 
 // function requestCustom(file: File): Promise<string> {
-//   // 拿到封面绝对路径 暂时没写
+//   // Get the absolute path of the cover. I haven’t written it yet.
 //   return new Promise<string>(async (resolve, reject) => {
 //     const { data, code, msg } = await getToken() as IResponse<any>;
 //     const { credentials } = data;
@@ -15,7 +15,7 @@ import { errorMessage } from '../common/message'
 //     reject(msg);
 //   })
 // }
-// 阿里云直传
+// Alibaba Cloud direct transmission
 // async function aliossFileUpload(file: File, config: any) {
 //   let client = new OSS({
 //     region: config.region,
@@ -43,7 +43,7 @@ import { errorMessage } from '../common/message'
 //   })
 // }
 
-// 切片上传
+// Slice upload
 export function ImageUpload(file: File) {
   const M = 5,
     maxSize = 1024 * 1024 * M,
@@ -55,17 +55,17 @@ export function ImageUpload(file: File) {
     async function upload(index: number) {
       const start = index * chunkSize
       if (file.size > maxSize) {
-        return errorMessage('图片大小不能超过' + M + 'M!')
+        return errorMessage('Image size cannot exceed' + M + 'M!')
       }
       if (filename.length > 80) {
-        return errorMessage('文件名太长了, 改一下吧')
+        return errorMessage('File name is too long, Change it')
       }
-      // 进行切片
+      // slice
       if (start > file.size) {
-        // 上传完毕了之后进行切片合并
+        // After the upload is completed, merge the slices
         return merge(file.name, index)
       }
-      // 切片为blob
+      // slice into blobs
       const blob = file.slice(start, start + chunkSize)
       const blobName = `${filename}.${index}.${ext}`
       const blobFile = new File([blob], blobName)
@@ -76,7 +76,7 @@ export function ImageUpload(file: File) {
         await fileUpload(form)
         upload(++index)
       } catch {
-        reject('上传失败了，待会再试试吧～')
+        reject('The upload failed, please try again later~')
       }
     }
     async function merge(name: string, length: number) {

@@ -38,7 +38,7 @@ export function useAvatar(emits: any) {
   async function setAvatar(event: any) {
     const file = event.target.files[0]
     const reader = new FileReader()
-    reader.readAsDataURL(file) // 暂时用base64处理 后期换cdn
+    reader.readAsDataURL(file) // Temporarily use base64 for processing and later change to cdn
     reader.onload = function (event) {
       emits('upload-avatar', event.target?.result)
     }
@@ -123,7 +123,7 @@ export function usePrimaryBGColor(resumeType: string) {
   }
 }
 
-// todo: 回跳后颜色显示的问题，后续考虑接入后端解决
+// todo: The problem of color display after rebound will be solved by connecting to the backend in the future.
 export function usePrimaryColor(resumeType: string) {
   const cacheKey = CUSTOM_MARKDOWN_PRIMARY_COLOR + '-' + resumeType,
     initialColor = getPrimaryColor(resumeType),
@@ -154,7 +154,7 @@ export function usePrimaryColor(resumeType: string) {
   }
 }
 
-// 自定义字体
+// Custom font
 export function useCustomFont(resumeType: string) {
   const cacheKey = MARKDOWN_FONT + '-' + resumeType
   const fontOptions = [
@@ -200,7 +200,7 @@ export function useCustomFont(resumeType: string) {
   }
 }
 
-/* 一键重置 */
+/* One click reset */
 export function restResumeContent(resumeType: string) {
   localStorage.removeItem(`${CUSTOM_CSS_STYLE}-${resumeType}`)
   localStorage.removeItem(`${CUSTOM_MARKDOWN_PRIMARY_COLOR}-${resumeType}`)
@@ -213,7 +213,7 @@ export function restResumeContent(resumeType: string) {
   location.reload()
 }
 
-// 调节元素边距
+// Adjust element margins
 export function useAdjust(resumeType: string) {
   const visible = ref(false)
   const properties = reactive<IElementProperty[]>([])
@@ -228,37 +228,37 @@ export function useAdjust(resumeType: string) {
 
   function getProperties(element: HTMLElement): IElementProperty[] {
     const curProperties: IElementProperty[] = []
-    const seenTags = new Set<string>() // 用于记录已经处理过的标签名
-    const seenClassNames = new Set<string>() // 用于记录已经处理过的类名
+    const seenTags = new Set<string>() // Used to record the tag names that have been processed
+    const seenClassNames = new Set<string>() // Used to record the class names that have been processed
 
     function helper(el: HTMLElement) {
       if (el !== element) {
-        const computedStyle = window.getComputedStyle(el) // 获取计算后的样式
-        const marginTop = parseInt(computedStyle.marginTop) // 获取 marginTop 值
+        const computedStyle = window.getComputedStyle(el) // Get the calculated style
+        const marginTop = parseInt(computedStyle.marginTop) // Get marginTop value
         const marginBottom = parseInt(computedStyle.marginBottom)
-        const tagName = el.tagName.toLowerCase() // 获取标签名，转换为小写
-        const className = el.className.split(' ')[0] || '' // 获取类名，如果没有则用 'No Class' 代替
+        const tagName = el.tagName.toLowerCase() // Get the tag name and convert it to lowercase
+        const className = el.className.split(' ')[0] || '' // Get the class name, if not, use 'No Class' instead
         const name = convert(className || tagName)
 
-        // 判断标签名和类名是否已经处理过，如果没有，则将其加入结果数组，并添加到 seenTags 和 seenClassNames 集合中
+        // Determine whether the tag name and class name have been processed. If not, add them to the result array and add them to the seenTags and seenClassNames collections.
         if (!seenTags.has(tagName) || !seenClassNames.has(className)) {
           curProperties.push({ tagName, name, marginBottom, marginTop, className })
           seenTags.add(tagName)
           seenClassNames.add(className)
         }
       }
-      // 遍历当前元素的所有子节点，并递归调用该函数
+      // Traverse all child nodes of the current element and call this function recursively
       const children = el.children
       for (let i = 0; i < children.length; i++) helper(children[i] as HTMLElement)
     }
 
-    helper(element) // 调用递归函数开始获取 marginTop 和 lineHeight 值
+    helper(element) //Call the recursive function to start getting the marginTop and lineHeight values
     return curProperties
   }
 
   function adjustMargin() {
     setVisible()
-    // 获取dom元素
+    // Get dom element
     const targetElement = queryRenderCV()
     const curProperties = getProperties(targetElement)
     properties.length = 0
@@ -289,14 +289,14 @@ export function useAdjust(resumeType: string) {
 
   function priorityInsert(isAppend: Element | null, styleDOM: Element) {
     if (!isAppend) {
-      // 插入到自动一页css前面 因为调整的优先级是最低的
+      //Insert in front of the automatic one-page css because the adjustment priority is the lowest
       const autoOnePage = query(AUTO_ONE_PAGE + '-' + resumeType)
       const customCSS = query(CUSTOM_CSS_STYLE + '-' + resumeType)
       if (autoOnePage || customCSS) {
         const siblingStyle = autoOnePage || customCSS
         document.head.insertBefore(styleDOM, siblingStyle)
       } else {
-        // 如果没有的话直接追加到head中
+        // If not, append directly to head
         document.head.appendChild(styleDOM)
       }
     }
@@ -305,7 +305,7 @@ export function useAdjust(resumeType: string) {
   function setVisible() {
     visible.value = !visible.value
   }
-  // 进入页面读取历史样式 并初始化CSS
+  // Enter the page to read historical styles and initialize CSS
   function initAdjustCSS() {
     const adjustCSS = (get(cacheKey) as string) || ''
     if (!adjustCSS) return
@@ -318,12 +318,12 @@ export function useAdjust(resumeType: string) {
     styleDOM.textContent = adjustCSS
     priorityInsert(isAppend, styleDOM)
   }
-  // 如果页面中没有用户调整了的样式 那么就需要去初始化
+  // If there is no user-adjusted style in the page, then it needs to be initialized.
   onActivated(() => !query(cacheKey) && initAdjustCSS())
   return { adjustMargin, visible, confirmAdjustment, properties }
 }
 
-// 调整行高
+//Adjust row height
 export function useLineHeight(resumeType: string) {
   const cacheKey = LINE_HEIGHT + '-' + resumeType
   const h = ref(get(cacheKey) ? +(get(cacheKey) as string) : +getLineHeight(resumeType))
@@ -357,7 +357,7 @@ export function useLineHeight(resumeType: string) {
   }
 }
 
-// 跟随滚动
+// follow scroll
 export function useFollowRoll() {
   const followRoll = ref(false)
   let destory: null | (() => void) = null
@@ -398,23 +398,23 @@ export function useFollowRoll() {
   }
 }
 
-// 获取元素高度
+// Get the height of the element
 function calculateElementHeight(element: HTMLElement) {
-  // 获取样式对象
+  // Get the style object
   const styles = getComputedStyle(element)
-  // 获取元素的内容高度
+  // Get the content height of the element
   // const contentHeight = element.getBoundingClientRect().height
   const contentHeight = element.clientHeight
-  // 获取元素的外边距高度
+  // Get the margin height of the element
   const marginHeight =
     +styles.getPropertyValue('margin-top').slice(0, -2) +
     +styles.getPropertyValue('margin-bottom').slice(0, -2)
-  // 计算元素的总高度
+  // Calculate the total height of the element
   const totalHeight = contentHeight + marginHeight
   return totalHeight
 }
 
-// 获取元素距离目标元素顶部偏移位
+// Get the offset of the element from the top of the target element
 function getElementTop(element: HTMLElement, target: HTMLElement) {
   let actualTop = element.offsetTop
   let current = element.offsetParent as HTMLElement
@@ -426,7 +426,7 @@ function getElementTop(element: HTMLElement, target: HTMLElement) {
   return actualTop
 }
 
-// 分割视图
+// Split view
 export function splitPage(renderCV: HTMLElement) {
   handlerWhiteBoundary(renderCV)
   let page = 0,
@@ -439,7 +439,7 @@ export function splitPage(renderCV: HTMLElement) {
     const wrapper = createDIV(),
       resumeNode = renderCV.cloneNode(true) as HTMLElement
     wrapper.classList.add('jufe-wrapper-page')
-    // 创建里面的内容 最小化高度
+    //Create the content inside and minimize the height
     const realRenderHeight = Math.min(target - realHeight, A4_HEIGHT)
     const wrapperItem = createDIV()
     wrapperItem.classList.add('jufe-wrapper-page-item')
@@ -459,7 +459,7 @@ export function splitPage(renderCV: HTMLElement) {
   pageSize.value = page
 }
 
-// 确保处理之前将之前的空元素删除 否则在多页情况下多次调用会多次生成空白占位符
+// Make sure to delete the previous empty elements before processing, otherwise multiple calls in multi-page situations will generate multiple blank placeholders.
 export function ensureEmptyPreWhiteSpace(renderCV: HTMLElement) {
   const children = Array.from(renderCV.children) as HTMLElement[]
   for (const child of children) {
@@ -473,26 +473,26 @@ export function ensureEmptyPreWhiteSpace(renderCV: HTMLElement) {
 function createBoundaryWhiteSpace(h: number) {
   const whiteSpace = createDIV()
   whiteSpace.setAttribute(WHITE_SPACE, 'true')
-  // 创建边界空白占位符 加上顶部边距
+  // Create border whitespace placeholder plus top margin
   whiteSpace.style.height = h + 'px'
   return whiteSpace
 }
 
-// 处理边界内容截断
+// Handle boundary content truncation
 export function handlerWhiteBoundary(renderCV: HTMLElement) {
   const pt = +getComputedStyle(renderCV).getPropertyValue('padding-top').slice(0, -2)
   const pb = +getComputedStyle(renderCV).getPropertyValue('padding-bottom').slice(0, -2)
   const children = Array.from(renderCV.children) as HTMLElement[]
   const pageSize = { value: 1 }
   for (const child of children) {
-    // 子元素的外边距也需要参与计算
+    // The margins of child elements also need to be involved in the calculation
     const height = calculateElementHeight(child)
     const actualTop = getElementTop(child, renderCV)
-    // 如果总长度已经超出了一页A4纸的高度（除去底部边距的高度） 那么需要找到边界元素
+    // If the total length exceeds the height of one A4 page (excluding the height of the bottom margin), then you need to find the border element
     if (actualTop + height > A4_HEIGHT * pageSize.value - pb) {
-      // 有子节点 继续查找 最小化空白元素的高度
+      // If there are child nodes, continue searching and minimize the height of the blank element.
       if (child.children.length) {
-        // 新的一页 重新计算新页高度
+        // New page, recalculate the new page height
         findBoundaryElement(child, renderCV, pt, pb, pageSize)
       } else {
         renderCV.insertBefore(
@@ -506,7 +506,7 @@ export function handlerWhiteBoundary(renderCV: HTMLElement) {
   return renderCV
 }
 
-// 排除多列布局不存在边界的情况
+//Exclude the case where there is no boundary in the multi-column layout
 function findBoundaryElement(
   node: HTMLElement,
   target: HTMLElement,
@@ -519,14 +519,14 @@ function findBoundaryElement(
     const totalHeight = calculateElementHeight(child)
     const actualTop = getElementTop(child, target)
     if (actualTop + totalHeight > A4_HEIGHT * pageSize.value - paddingBottom) {
-      // 直接排除一行段落文字 因为在markdown中一段文本没必要再进行深入，它们内嵌不了什么其他元素
+      // Directly exclude a line of paragraph text because there is no need to go deeper into a paragraph of text in markdown, and they cannot embed any other elements.
       if (
         child.children.length &&
         !['p', 'li', 'table'].includes(child.tagName.toLocaleLowerCase())
       ) {
         findBoundaryElement(child, target, paddingTop, paddingBottom, pageSize)
       } else {
-        // 找到了边界 给边界元素前插入空白元素 将内容挤压至下一页
+        // Found the border, insert a blank element before the border element and squeeze the content to the next page.
         node.insertBefore(
           createBoundaryWhiteSpace(A4_HEIGHT * pageSize.value - actualTop + paddingTop),
           child
@@ -537,7 +537,7 @@ function findBoundaryElement(
   }
 }
 
-/* 自动一页 Start */
+/* Automatic page Start */
 export function useAutoOnePage(resumeType: string) {
   const cacheKey = AUTO_ONE_PAGE + '-' + resumeType,
     autoOnePage = ref<any>(getLocalStorage(cacheKey))
@@ -547,11 +547,11 @@ export function useAutoOnePage(resumeType: string) {
     if (autoOnePage.value) {
       const difference = A4_HEIGHT - renderCV?.clientHeight
       if (difference < 0 && difference < -200) {
-        warningMessage('你的内容有点太多啦！压缩成一页的话不太美观哦～')
+        warningMessage('Your content is a bit too much! It will not look good if it is compressed into one page~')
         return
       }
       if (difference > 0 && difference > 500) {
-        warningMessage('你的内容有点太少了！压缩成一页的话不太美观哦，再填写一点内容吧～')
+        warningMessage("Your content is a bit too little! It won't look good if it is compressed into one page. Fill in a little more content~")
         return
       }
       const { differenceConfig, map } = getInitMarginTop(renderCV)
@@ -559,7 +559,7 @@ export function useAutoOnePage(resumeType: string) {
     } else {
       removeHeadStyle(cacheKey)
     }
-    // 缓存3个小时
+    // cache for 3 hours
     setLocalStorage(cacheKey, autoOnePage.value)
     !first && splitPage(renderCV)
   }
@@ -572,7 +572,7 @@ export function useAutoOnePage(resumeType: string) {
 }
 
 function getInitMarginTop(container: HTMLElement) {
-  // 获取所有可调整的标签不能这么拿 需要递归判断当前元素是否是在flex布局中，flex会呈多列 会造成许多无效的标签处理
+  // You cannot get all adjustable tags like this. You need to recursively determine whether the current element is in flex layout. Flex will be in multiple columns, which will cause many invalid tag processing.
   const titles = Array.from(container.querySelectorAll('h1,h2,h3,h4,h5,h6,li,p')),
     differenceConfig: priorityDefineItem[] = []
   const visited = new Set(),
@@ -587,7 +587,7 @@ function getInitMarginTop(container: HTMLElement) {
     visited.add(tag)
     const top = +getComputedStyle(title, null).marginTop.slice(0, -2)
     const cur = { ...priorityDefine[tag as keyof priorityDefine], top, tag }
-    // 计算优先级
+    // Calculate priority
     const optimal = cur.top / cur.max
     cur.optimal = optimal
     differenceConfig.push(cur)
@@ -595,7 +595,7 @@ function getInitMarginTop(container: HTMLElement) {
   return { differenceConfig, map }
 }
 
-// 计算优先级 以及 处理优先级高的数据
+// Calculate priority and process data with high priority
 export const priorityDefine = {
   h1: { max: 30, min: -15, top: 0, tag: '', optimal: 0 },
   h2: { max: 30, min: -15, top: 0, tag: '', optimal: 0 },
@@ -612,7 +612,7 @@ const defaultCmp = (x: priorityDefineItem, y: priorityDefineItem) => x.optimal >
 const swap = (arr: priorityDefineItem[], i: number, j: number) =>
   ([arr[i], arr[j]] = [arr[j], arr[i]])
 export class Heap {
-  // 默认是最大堆
+  //The default is the maximum heap
   container: priorityDefineItem[] = []
   cmp = defaultCmp
   constructor(cmp: (x: priorityDefineItem, y: priorityDefineItem) => boolean) {
@@ -642,7 +642,7 @@ export class Heap {
     let index = 0,
       exchange = index * 2 + 1
     while (exchange < length) {
-      // 以最大堆的情况来说：如果有右节点，并且右节点的值大于左节点的值
+      // Take the case of the maximum heap: if there is a right node and the value of the right node is greater than the value of the left node
       const right = index * 2 + 2
       if (right < length && cmp(container[right], container[exchange])) {
         exchange = right
@@ -679,7 +679,7 @@ function useOnePageCSSContent(
     heap.push(optimal)
   }
   if (difference < 0) {
-    // 大顶堆 (收缩要减掉内边距 暂时这么写)
+    // Large top stack (to shrink, you need to reduce the padding, so write it like this for the time being)
     while (difference++ < 20) {
       const topEl = heap.pop() as priorityDefineItem
       topEl.top = topEl.top - 1 / (map.get(topEl.tag) || 1)
@@ -687,7 +687,7 @@ function useOnePageCSSContent(
       heap.push(topEl as priorityDefineItem)
     }
   } else {
-    // 小顶堆 (拉伸也要减掉内边距 思路同上)
+    // Small top stack (the padding should also be reduced when stretching, the idea is the same as above)
     while (difference-- > 20) {
       const topEl = heap.pop() as priorityDefineItem
       topEl.top = topEl.top + 1 / (map.get(topEl.tag) || 1)
@@ -695,17 +695,17 @@ function useOnePageCSSContent(
       heap.push(topEl as priorityDefineItem)
     }
   }
-  // 创建样式表
+  // Create style sheet
   const styleDOM = createStyle()
   let cssText = ''
   styleDOM.setAttribute(cacheKey, 'true')
 
   for (const optimal of heap.container) {
-    // 权重加高 防止被覆盖
+    // Increase the weight to prevent being overwritten
     cssText += `.jufe ${optimal.tag}{margin-top:${optimal.top}px!important;}`
   }
   styleDOM.textContent = cssText
-  // 插入到自定义CSS前面 因为自动一页的优先级是第二高的
+  //Insert in front of the custom CSS because the priority of the automatic page is the second highest
   const customCSS = query(CUSTOM_CSS_STYLE + '-' + resumeType)
   customCSS ? document.head.insertBefore(styleDOM, customCSS) : document.head.appendChild(styleDOM)
 }

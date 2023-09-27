@@ -15,7 +15,7 @@ startGuide()
 
 <template>
   <!-- <div class="tip">
-    您正在使用备用网址，可能功能不齐全，若有需要请自行前往主站使用更完善的功能及模板
+    You are using an alternate website, which may not have complete functions. If necessary, please go to the main website to use more complete functions and templates.
     <a class="pointer hover" href="https://codecv.top">https://codecv.top</a>
   </div> -->
   <Header
@@ -28,7 +28,7 @@ startGuide()
   <div id="editor">
     <Editor />
     <markdown-render class="markdown-render" @upload-avatar="setAvatar" />
-    <el-tooltip content="导出PDF文件" v-if="showExport">
+    <el-tooltip content="Export PDF file" v-if="showExport">
       <i
         data-aos="fade-in"
         data-aos-duration="800"

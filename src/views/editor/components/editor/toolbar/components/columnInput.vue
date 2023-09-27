@@ -8,7 +8,7 @@ const column = ref(2)
 
 function confirm() {
   if (!column.value) {
-    warningMessage('请填写完整!')
+    warningMessage('Please fill in the complete form!')
     return
   }
   emit('confirm', column.value)
@@ -16,12 +16,12 @@ function confirm() {
 </script>
 
 <template>
-  <h3>请输入需要插入的列数</h3>
+  <h3>Please enter the number of columns to be inserted</h3>
   &nbsp;
-  <el-input v-model="column" type="number" placeholder="请输入列数"></el-input>
+  <el-input v-model="column" type="number" placeholder="Please enter the number of columns"></el-input>
   &nbsp;
   <br />
-  <button class="btn primary pointer hover" @click.stop="confirm">确定</button>
+  <button class="btn primary pointer hover" @click.stop="confirm">Confirm</button>
 </template>
 
 <style lang="scss" scoped></style>

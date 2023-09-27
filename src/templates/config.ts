@@ -2,7 +2,7 @@ import { ref } from 'vue'
 
 const initialCVState: Map<string, string[]> = new Map()
 
-// 创作模板的默认配置
+// Default configuration for authoring templates
 initialCVState.set('create', ['#333', '#333', '', '25'])
 
 type Module = {

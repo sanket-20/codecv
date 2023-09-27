@@ -77,10 +77,10 @@ export function scrollTo(targetTop = 0) {
 
   function scrollHelper() {
     currentScrollTop = documentBody.scrollTop
-    // 距离目标还有多远
+    // How far is it from the target?
     const currentDistance = currentScrollTop - targetTop
-    // 1. 超过了最大最小值
-    // 2. 刚好走完了
+    // 1. Exceeded the maximum and minimum values
+    // 2. Just finished walking
     if (preScrollTop == currentScrollTop || currentDistance == 0) {
       return
     }
@@ -89,7 +89,7 @@ export function scrollTo(targetTop = 0) {
     window.requestAnimationFrame(function () {
       GAP = currentDistance > 0 ? _GAP : -_GAP
       currentScrollTop -= GAP
-      // 如果距离比较小那么直接定位即可
+      // If the distance is relatively small, then you can locate it directly
       if (Math.abs(currentDistance) < _GAP) {
         documentBody.scrollTop = targetTop
         return
@@ -114,57 +114,57 @@ export function calcOffsetTop(dom: HTMLElement) {
 export function convert(target: string) {
   switch (target) {
     case 'h1':
-      return '一级标题'
+      return 'first level title'
     case 'h2':
-      return '二级标题'
+      return 'Second level title'
     case 'h3':
-      return '三级标题'
+      return 'Level 3 headings'
     case 'h4':
-      return '四级标题'
+      return 'Level 4 heading'
     case 'h5':
-      return '五级标题'
+      return 'Level 5 heading'
     case 'h6':
-      return '六级标题'
+      return 'Level 6 headings'
     case 'strong':
-      return '强调/加粗'
+      return 'Emphasis/bold'
     case 'a':
-      return '链接'
+      return 'Link'
     case 'p':
-      return '普通文本'
+      return 'normal text'
     case 'li':
-      return '列表项'
+      return 'list item'
     case 'ul':
-      return '无序列表'
+      return 'unordered list'
     case 'ol':
-      return '有序列表'
+      return 'ordered list'
     case 'resume-module':
-      return '整个子模块'
+      return 'Entire submodule'
     case 'single-code':
-      return '代码框'
+      return 'code box'
     case 'head-layout':
-      return '个人信息栏'
+      return 'Personal information column'
     case 'main-layout':
-      return '主体内容'
+      return 'Main content'
     case 'flex-layout':
-      return '多列布局'
+      return 'multi-column layout'
     case 'flex-layout-item':
-      return '多列布局项'
+      return 'multi-column layout items'
     case 'iconfont':
-      return '字体图标'
+      return 'Font icon'
     case 'img':
-      return '证件照/图片'
+      return 'ID photo/picture'
     case 'table':
-      return '表格'
+      return 'sheet'
     case 'thead':
-      return '表头'
+      return 'Header'
     case 'tr':
-      return '表行'
+      return 'Table row'
     case 'th':
-      return '表头单元格'
+      return 'header cell'
     case 'tbody':
-      return '表格主体'
+      return 'form body'
     case 'td':
-      return '表格数据单元格'
+      return 'table data cells'
   }
   return target
 }

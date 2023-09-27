@@ -48,12 +48,12 @@ const { isDark } = useThemeConfig()
       :step="10"
       show-stops
     />
-    <div class="operator-level2">
-      <el-tooltip content="调整元素上下边距" effect="light">
+   <div class="operator-level2">
+      <el-tooltip content="Adjust the top and bottom margins of elements" effect="light">
         <i class="iconfont icon-adjust operator-item" @click="adjustMargin"></i>
       </el-tooltip>
       <el-tooltip
-        content="上传前请确保你想上传的位置在编辑器中存在 ![个人头像](...) 此占位符"
+        content="Please make sure the location you want to upload exists in the editor before uploading![Personal avatar](...) this placeholder"
         effect="light"
       >
         <label for="upload-avatar" class="operator-item card">
@@ -61,7 +61,7 @@ const { isDark } = useThemeConfig()
         </label>
       </el-tooltip>
       <input type="file" id="upload-avatar" accept=".png,.jpg,.jpeg" @change="setAvatar" />
-      <el-tooltip content="编写CSS" effect="light">
+      <el-tooltip content="Writing CSS" effect="light">
         <i class="operator-item iconfont icon-diy" @click="toggleDialog"></i
       ></el-tooltip>
       <div class="operator-item font-color-picker">
@@ -72,16 +72,16 @@ const { isDark } = useThemeConfig()
       </div>
       <el-popconfirm
         width="240"
-        confirm-button-text="是的"
-        cancel-button-text="点错了"
-        title="你想重置简历的所有内容吗？"
+        confirm-button-text="Yes"
+        cancel-button-text="Wrong click"
+        title="Do you want to reset all contents of your resume?"
         @confirm="restResumeContent(resumeType)"
       >
-        <template #reference>
+       <template #reference>
           <i class="operator-item iconfont icon-refresh ml-20"></i>
         </template>
       </el-popconfirm>
-      <el-tooltip content="自动一页" effect="light">
+      <el-tooltip content="Auto one page" effect="light">
         <el-switch
           class="operator-item auto-one-page"
           size="small"
@@ -89,7 +89,7 @@ const { isDark } = useThemeConfig()
           v-model="autoOnePage"
         />
       </el-tooltip>
-      <el-tooltip content="跟随滚动" effect="light">
+      <el-tooltip content="Follow scroll" effect="light">
         <el-switch
           class="operator-item follow-roll"
           size="small"
@@ -97,7 +97,7 @@ const { isDark } = useThemeConfig()
           @change="setFollowRoll"
         />
       </el-tooltip>
-      <el-tooltip content="行高设置" effect="light">
+      <el-tooltip content="Line height setting" effect="light">
         <el-select
           v-model="h"
           class="operator-item lh-select"
@@ -113,7 +113,7 @@ const { isDark } = useThemeConfig()
           />
         </el-select>
       </el-tooltip>
-      <el-tooltip content="字体设置" effect="light">
+      <el-tooltip content="Font settings" effect="light">
         <el-select
           v-model="font"
           class="operator-item font-select"
@@ -132,22 +132,22 @@ const { isDark } = useThemeConfig()
     </div>
     <br />
   </div>
-  <!-- 弹出框 -->
+  <!-- Pop-up box -->
   <ToastModal v-if="cssDialog" :flag="cssDialog" @close="cssDialog = false" width="400px">
-    <h4 class="mb-10">编写CSS样式让它作用在模板上</h4>
+    <h4 class="mb-10">Write CSS styles to apply to templates</h4>
     <codemirror
       v-model="cssText"
       autofocus
       :style="{ minHeight: '300px', maxHeight: '500px' }"
       :indent-with-tab="true"
       :extensions="isDark ? [cssLanguage, oneDark] : [cssLanguage]"
-      placeholder="格式如 .jufe h2 { color: red; }"
+      placeholder="Format such as .jufe h2 { color: red; }"
     />
     <br />
-    <button class="btn primary cursor hover" @click="setStyle">确认</button>
-    <button class="btn primary cursor hover" @click="removeStyle">重置</button>
+    <button class="btn primary cursor hover" @click="setStyle">Confirm</button>
+    <button class="btn primary cursor hover" @click="removeStyle">Reset</button>
   </ToastModal>
-  <!-- 调整边距 -->
+  <!-- Adjust margins -->
   <ToastModal
     v-if="visible"
     :flag="visible"
@@ -156,9 +156,9 @@ const { isDark } = useThemeConfig()
   >
     <div class="properties-container flex" v-if="properties.length">
       <div class="properties-header">
-        <span>元素名称</span>
-        <span>上边距 (px)</span>
-        <span>下边距 (px)</span>
+        <span>Element name</span>
+        <span>Top margin (px)</span>
+        <span>Bottom margin (px)</span>
       </div>
       <div class="properties-item" v-for="(property, idx) in properties" :key="idx">
         <el-space>
@@ -168,9 +168,9 @@ const { isDark } = useThemeConfig()
         </el-space>
       </div>
     </div>
-    <Empty v-else title="简历中还没有内容 可以先写点东西" />
+    <Empty v-else title="There is no content in the resume yet, you can write something first" />
     <br />
-    <h5 style="color: var(--strong-color)">PS: 只显示简历模板中已经使用的</h5>
+    <h5 style="color: var(--strong-color)">PS: Only display the ones already used in the resume template</h5>
   </ToastModal>
 </template>
 
@@ -185,7 +185,7 @@ const { isDark } = useThemeConfig()
   background: var(--toolbar-bg);
   padding-top: 20px;
 
-  /* 解决label默认边距的问题 */
+  /* Solve the problem of label default margin */
   .card {
     height: 25px;
   }

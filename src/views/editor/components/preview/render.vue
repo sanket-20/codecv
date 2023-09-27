@@ -19,7 +19,7 @@ const { renderDOM } = useRenderHTML(resumeType)
       @upload-avatar="path => $emit('upload-avatar', path)"
     />
     <div ref="renderDOM" class="markdown-transform-html jufe reference-dom"></div>
-    <!-- 分页渲染区域 -->
+    <!-- Paging rendering area -->
     <div
       class="re-render"
       :style="{

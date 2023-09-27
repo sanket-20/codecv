@@ -13,7 +13,7 @@ onMounted(() => {
   importCSS(String(route.query.type))
   ;(document.querySelector('.markdown-transform-html') as HTMLElement).innerHTML =
     editorStore.nativeContent
-  editorStore.resetNativeContent() // 重置
+  editorStore.resetNativeContent() // reset
   setTimeout(() => {
     setExportCount()
     setTemplateCondition({ name: String(route.query.type) })
