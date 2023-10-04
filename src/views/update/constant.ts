@@ -1,68 +1,68 @@
 export const timeLine = [
   {
     content: `
-      纯前端导出体验并不好，暂时使用服务端导出PDF的方式替换前端导出方案，解决导出会出现的内容截断问题
+      The pure front-end export experience is not good, temporarily using the server-side export PDF method to replace the front-end export solution, solving the content truncation problem that occurs during export.
       `,
     timestamp: '2023-07-15',
     version: '1.4.4'
   },
   {
     content: `
-      新增高质量岗位模块
+      Added high-quality job module.
       `,
     timestamp: '2023-07-10',
     version: '1.4.3'
   },
   {
     content: `
-      1. 内容模式工具栏新增链接按钮.
-      2. 新增暗黑模板
+      1. Added link button to the content mode toolbar.
+      2. Added dark mode template.
       `,
     timestamp: '2023-05-02',
     version: '1.4.2'
   },
   {
     content: `
-      1. 内容模式添加工具栏，支持使用UI交互来编写简历内容格式.
+      1. Added toolbar to the content mode, supporting UI interaction to write resume content format.
       `,
     timestamp: '2023-04-26',
     version: '1.4.1'
   },
   {
     content: `
-      1. 支持两种编辑模式(内容模式 & markdown模式)，解决部分用户markdown语法门槛的问题，但是还是建议使用markdown编辑模式，内容模式目前处于试用阶段，可能出现一些问题(如果出现问题请转到markdown模式进行编辑后再重试).
-      2. 新增上边距调节器，你可以使用该工具调整简历中元素的上边距.
-      3. 调整 UI布局.
+      1. Support two editing modes (content mode & markdown mode) to address the markdown syntax barrier for some users. However, it is still recommended to use markdown editing mode. The content mode is currently in the trial stage and may have some issues (if you encounter problems, please switch to markdown mode for editing and then retry).
+      2. Added top margin adjuster, allowing you to adjust the top margin of elements in the resume.
+      3. Adjusted UI layout.
       `,
     timestamp: '2023-04-23',
     version: '1.4.0'
   },
   {
     content:
-      '新增UI设计师模板、编辑器中删除线语法、一键重置简历内容到初始状态（不可逆，操作前请注意！）功能，修复已有BUG。',
+      'Added UI designer template, deletion syntax in the editor, and one-click reset of resume content to the initial state (irreversible, please be cautious before proceeding!), fixed existing bugs.',
     timestamp: '2023-03-13',
     version: '1.3.4'
   },
   {
     content:
-      '新增多种模板：商务、社招类，上传证件照、自定义主色调、字体颜色功能，并优化自动一页功能，由于每种模板的间距都不太一样，个别模板或许会有微小的误差，可手动进行调整（手动增删部分文字即可）.',
+      'Added multiple templates: business, social recruitment, upload ID photo, custom primary color, font color functionality, and optimized the auto-page feature. Due to the varying spacing of each template, there may be minor discrepancies in certain templates. Manual adjustments can be made (manually add or delete some text).',
     timestamp: '2022-11-19',
     version: '1.3.3'
   },
   {
     content:
-      '新增字体选择、加载动画、文件导入导出、编辑器模式替换输入框，优化简历操作栏排版，修复简历中图片显示的问题.',
+      'Added font selection, loading animation, file import/export, editor mode replacing input boxes, optimized resume toolbar layout, and fixed image display issues in the resume.',
     timestamp: '2022-11-06',
     version: '1.3.2'
   },
   {
-    content: '新增语法小助手，你可以去语法小助手学习编写简历可能会用到的一些特殊语法.',
+    content: 'Added Grammar Assistant, where you can learn special syntax that might be used when writing a resume.',
     timestamp: '2022-11-03',
     version: '1.3.1'
   },
   {
     content:
-      '新增实时分页显示、优化导出PDF的方式，提供了原生和动态计算两种导出方式，可以根据自己的偏好选择.',
+      'Added real-time pagination display, optimized the way PDF is exported, providing two export methods: native and dynamic calculation. You can choose according to your preference.',
     timestamp: '2022-11-02',
     version: '1.3.0'
   }

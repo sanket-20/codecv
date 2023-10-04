@@ -4,7 +4,7 @@ import { timeLine } from './constant'
 
 <template>
   <div class="time-line noto-serif-sc" data-aos="fade-right">
-    <h3>历史版本</h3>
+    <h3>Historical Versions</h3>
     <el-timeline>
       <el-timeline-item
         type="primary"
@@ -18,6 +18,10 @@ import { timeLine } from './constant'
     </el-timeline>
   </div>
 </template>
+
+<script setup lang="ts">
+import { timeLine } from './constant'
+</script>
 
 <style lang="scss" scoped>
 .time-line {

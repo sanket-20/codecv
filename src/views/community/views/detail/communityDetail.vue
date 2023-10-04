@@ -31,6 +31,7 @@ const { delay } = useDelayMenuBar(articleId)
 const clicked = computed(() => article.likes.includes(userInfo.uid))
 const isAuthor = computed(() => article.authorId == userInfo.uid)
 </script>
+
 <template>
   <div class="community-detail flex">
     <div class="main-content mr-20">
@@ -51,19 +52,19 @@ const isAuthor = computed(() => article.authorId == userInfo.uid)
             {{ numFormat(article.comments.length) }}
           </span>
           <span>
-            <el-tooltip placement="bottom" content="分享给朋友">
+            <el-tooltip placement="bottom" content="Share with friends">
               <i class="iconfont icon-share font-20"></i>
             </el-tooltip>
           </span>
           <span v-if="isAuthor" @click="$router.push(`/community/editor?articleId=${articleId}`)">
-            <el-tooltip placement="bottom" content="编辑">
+            <el-tooltip placement="bottom" content="Edit">
               <i class="iconfont icon-edit font-20"></i>
             </el-tooltip>
           </span>
         </div>
         <span class="pointer tag mr-20">#{{ article.professional }}</span>
-        <span class="pointer hover" @click="$router.back()">返回上一页</span>
-        <span class="pointer hover back absolute" @click="$router.back()">返回上一页</span>
+        <span class="pointer hover" @click="$router.back()">Go Back</span>
+        <span class="pointer hover back absolute" @click="$router.back()">Go Back</span>
       </div>
       <Publish
         :article-id="articleId"
@@ -96,6 +97,7 @@ const isAuthor = computed(() => article.authorId == userInfo.uid)
     </div>
   </div>
 </template>
+
 <style lang="scss" scoped>
 .community-detail {
   max-width: var(--max-width);

@@ -1,33 +1,38 @@
-# 岗位添加方式
+# Job Posting Guidelines
 
-## 悉知
+## Notice
 
-> `warning`: 岗位需要是真实在招人的，刷`KPI`的被发现将加入黑名单册
+warning:
 
-> `info`: 需要新增岗位的可以按照如下格式在 `recruit.ts` 文件中进行添加后提交 `PR` 或者联系作者本人添加
+info: If you need to add a new job posting, you can follow the format below in the recruit.ts file and then submit a PR or contact the author to add it.
 
-- `logo`: 公司 logo（不是必须的，有的话可以加上，增加辨识度）
-- `type`: 招聘面向哪些人群
-- `job`: 招聘的岗位
-- `corporation`: 招聘公司名称
-- `tags`: 岗位或公司相关标签
-- `endTime`: 截止时间
-- `educational_required`: 学历要求
-- `remark`: 其他信息
-- `external_link`: 投递方式（可以给官方链接也可以提供微信联系方式）
+> `warning`:  Job postings must be genuine and actively recruiting. Posting to inflate `KPI` will result in being added to the blacklist.
 
-## 岗位例子
+> `info`: f you need to add a new job posting, you can follow the format below in the `recruit.ts` file and then submit a `PR` or contact the author to add it.
+
+- `logo`: Company logo (not mandatory, but if available, it can increase visibility)
+- `type`: Target audience for recruitment
+- `job`:  Job position being recruited for
+- `corporation`: Recruiting company's name
+- `tags`: Job or company-related tags
+- `endTime`:  Application deadline
+- `educational_required`: Educational requirements
+- `remark`: Additional information
+- `external_link`: Application process (you can provide an official link or provide WeChat contact information)
+
+## Job Example
 
 ```js
 {
     logo: 'https://gw.alicdn.com/imgextra/i3/O1CN0175GaEE1WFD2QbMmw2_!!6000000002758-2-tps-200-53.png',
-    type: ['应届生', '1-3年经验'],
-    job: '前端开发工程师',
-    corporation: '飞猪旅行',
-    tags: ['福利待遇好', '面试简单'],
-    endTime: '尽快投递',
-    educational_required: ['统招本科', '不强制要求92', '优秀可特批'],
-    remark: '领导很好，本人亲试。',
+    type: ['Fresh Graduates', '1-3 years of experience'],
+    job: 'Frontend Development Engineer',
+    corporation: 'Fliggy Travel',
+    tags: ['Excellent Benefits', 'Simple Interview'],
+    endTime: 'Apply as soon as possible',
+    educational_required: ['Bachelor\'s Degree', 'Not mandatory 92', 'Exceptional cases considered'],
+    remark: 'Great leadership, tried and tested by the author.',
     external_link: 'https://alibaba.com/feizhu'
 }
+
 ```

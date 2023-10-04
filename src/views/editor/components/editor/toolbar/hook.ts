@@ -6,8 +6,8 @@ import { reset } from './components/linkInput/hook'
 import { createText, queryDOM } from '@/utils'
 
 // Title level control
-export const level = ref('普通文本')
-export function useHeading(emit: any) {
+export const level = ref('normal text')
+export function useHeading(emit: any)   {
   function setHeading() {
     const tagName = level.value ? level.value : 'p',
       replaceDOM = document.createElement(tagName),

@@ -3,7 +3,7 @@
 This is a tool for creating resumes using `markdown`. It can convert your written `markdown` resume into a `PDF` format, supports multiple templates, is completely free, and runs on love.
 
 <div style="font-size: 1.5rem;">
-  <a href="./README.md">中文</a> |
+  <a href="./README.md">Chinese</a> |
   <a href="./README.en.md">English</a>
 </div>
 </br>
@@ -39,16 +39,11 @@ Finally, open your browser and access the service's address at http://serverIP:8
 ## 🤩 Preview of the result
 
 <p>Resume template</p>
-
-<img style="max-width: 1000px" src="./docs/templates.webp" alt="模板" />
-
+<img style="max-width: 1000px" src="./docs/templates.webp" alt="Template" />
 <p>Resume editing and dark themes</p>
-
-<img style="max-width: 1000px" src="./docs/editor.webp" alt="编辑页" />
-
+<img style="max-width: 1000px" src="./docs/editor.webp" alt="Editor" />
 <p>Built-in multiple vector ICONS</p>
-
-<img style="max-width: 1000px" src="./docs/iconfont.webp" alt="矢量图标" />
+<img style="max-width: 1000px" src="./docs/iconfont.webp" alt="Vector Icons" />
 
 ## ✊🏻 Features to be implemented
 

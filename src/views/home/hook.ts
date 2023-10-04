@@ -13,21 +13,20 @@ export function useTypeNet() {
     const content = document.querySelector('.typenet-text')
     if (content?.querySelector('.type-container') != null) return
     new TypeNet('.typenet-text', { speed: 10, style: 'font-weight: bold; line-height: 28px' })
-      // .type('5分钟', { style: 'font-size: 40px; line-height: 60px; color: #ff7449' })
-      .type(' 使用', { style: 'font-size: 40px;line-height: 60px' })
-      .type(' CodeCV ', {
+      .type(' in 5 minutes', { style: 'font-size: 40px;line-height: 60px' })
+      .type(' with CodeCV ', {
         style: 'color: #ff7449; font-size: 40px;line-height: 60px'
       })
-      .type('快速生成你的优质简历', {
+      .type('to quickly generate your high-quality resume', {
         style: 'font-size: 40px;line-height: 60px'
       })
       .line()
       .line()
-      .type('CodeCV 支持你使用 Markdown 语法来编写你的简历，可扩展性极高。且支持双编辑模式，')
-      .type('Markdown模式 ', { style: 'color: #ff7449' })
-      .type('以及')
-      .type(' 富文本模式 ', { style: 'color: #ff7449' })
-      .type('无缝切换，多种模板适配，编写一套简历内容可适配多个简历模板，你想要的这里都有～')
+      .type('CodeCV supports you to write your resume using Markdown syntax, highly extensible. And it supports dual editing modes, ')
+      .type('Markdown mode ', { style: 'color: #ff7449' })
+      .type('as well as')
+      .type(' rich text mode ', { style: 'color: #ff7449' })
+      .type('seamless switching, multiple template adaptations. Write a set of resume content that can adapt to multiple resume templates, everything you want is here~')
       .start()
   })
 }
@@ -81,33 +80,29 @@ export function useUserComments() {
   const comments = [
     {
       avatar: avatar1,
-      profession: '阿里巴巴-前端技术专家',
-      content: '使用体验还不错呀，UI 做的确实也蛮好的，小伙子继续加油！'
+      profession: 'Frontend Technology Expert at Alibaba',
+      content: 'The user experience is pretty good. The UI is really well designed. Keep it up!'
     },
     {
       avatar: avatar2,
-      profession: '嵌入式开发工程师',
-      content:
-        '在nk推荐中看到了这个工具，非常感谢作者大大的开发，虽然我不是前后端开发，但是直观感觉这玩意真好～'
+      profession: 'Embedded Development Engineer',
+      content: "Found this tool in nk's recommendation. Thanks a lot to the author for the development. Although I am not a frontend or backend developer, it feels really good~"
     },
     {
       avatar: avatar3,
-      profession: 'Java开发工程师',
-      content:
-        '这个简历工具实在是泰库辣！真的节省了我很多时间，简历模板也很实用，发现了宝藏工具！！'
+      profession: 'Java Development Engineer',
+      content: 'This resume tool is really cool! It saved me a lot of time. The resume templates are also very practical. Discovered a treasure of a tool!!'
     },
     {
       avatar: avatar4,
-      profession: '用户运营',
-      content:
-        '简历写起来真的非常方便，因为我不懂UP说的markdown，所以我使用富文本方式编写，感觉就和写word一样简单，墙裂推荐～'
+      profession: 'User Operations',
+      content: "Writing a resume is really convenient. Because I don't understand the markdown that UP said, so I use the rich text way to write. It feels as easy as writing in Word. Highly recommended~"
     },
 
     {
       avatar: avatar5,
-      profession: '产品经理',
-      content:
-        '周末在家搞网站发现的这个宝藏资源，写简历就跟写笔记一样简单了，所见即所得，以后写简历就在这上面了～'
+      profession: 'Product Manager',
+      content: 'Found this treasure resource while working on the website at home during the weekend. Writing a resume is as simple as taking notes. WYSIWYG, will use this for writing resumes from now on~'
     }
   ]
   return {
@@ -117,7 +112,7 @@ export function useUserComments() {
 
 export function useRecentTemplate() {
   onMounted(() => {
-    // 处理数据
+    // Process data
     ;(async () => {
       const _templateData = await getTemplateCondition()
       if (!_templateData.result) {

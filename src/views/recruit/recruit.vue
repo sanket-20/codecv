@@ -14,17 +14,17 @@ const { data, form, reset, pageNumChange } = useData()
   <div class="recruit flex">
     <div class="recruit-data content-card mr-20" data-aos="fade-right">
       <h6 class="mb-20" style="color: var(--strong-color)">
-        PS: 需要添加岗位的可以联系作者 必须是真正招人的岗位 如果发现刷 KPI 将放入黑名单册公示
+        PS: For those who need to add a position, please contact the author. It must be a genuine job opening. If KPI padding is discovered, it will be publicly listed in the blacklist.
       </h6>
       <el-form :inline="true" :model="form">
-        <el-form-item label="模糊搜索">
-          <el-input v-model="form.keyword" placeholder="关键词搜索" clearable />
+        <el-form-item label="Fuzzy Search">
+          <el-input v-model="form.keyword" placeholder="Keyword search" clearable />
         </el-form-item>
-        <el-form-item label="工作岗位">
-          <el-input v-model="form.job" placeholder="岗位筛选" clearable />
+        <el-form-item label="Job Position">
+          <el-input v-model="form.job" placeholder="Position filter" clearable />
         </el-form-item>
-        <el-form-item label="学历要求">
-          <el-select v-model="form.educational_required" placeholder="学历要求" clearable>
+        <el-form-item label="Educational Requirements">
+          <el-select v-model="form.educational_required" placeholder="Educational requirements" clearable>
             <el-option
               v-for="(item, index) in EducationalRequiredOptions"
               :label="item"
@@ -33,8 +33,8 @@ const { data, form, reset, pageNumChange } = useData()
             />
           </el-select>
         </el-form-item>
-        <el-form-item label="工作经验">
-          <el-select v-model="form.type" placeholder="招聘类型" clearable>
+        <el-form-item label="Work Experience">
+          <el-select v-model="form.type" placeholder="Recruitment type" clearable>
             <el-option
               v-for="(item, index) in WorkEXPOptions"
               :label="item"
@@ -43,8 +43,8 @@ const { data, form, reset, pageNumChange } = useData()
             />
           </el-select>
         </el-form-item>
-        <el-form-item label="公司标签">
-          <el-select v-model="form.icu" placeholder="按标签筛选" clearable>
+        <el-form-item label="Company Tags">
+          <el-select v-model="form.icu" placeholder="Filter by tag" clearable>
             <el-option
               v-for="(item, index) in WorkAndResetTimeOptions"
               :label="item"
@@ -54,31 +54,31 @@ const { data, form, reset, pageNumChange } = useData()
           </el-select>
         </el-form-item>
         <el-form-item>
-          <el-button color="var(--theme)" @click="reset">重置</el-button>
+          <el-button color="var(--theme)" @click="reset">Reset</el-button>
         </el-form-item>
       </el-form>
       <div class="recruit-limit">
         <el-table :data="data" style="width: 100%">
           <el-table-column label="Logo" prop="logo">
             <template #default="{ row }">
-              <img v-if="row.logo" class="corporation_logo" :src="row.logo" alt="公司logo" />
+              <img v-if="row.logo" class="corporation_logo" :src="row.logo" alt="Company logo" />
               <i v-else class="iconfont icon-city font-25" />
             </template>
           </el-table-column>
-          <el-table-column label="公司名称" prop="corporation">
+          <el-table-column label="Company Name" prop="corporation">
             <template #default="{ row }">
               <strong>{{ row.corporation }}</strong>
             </template>
           </el-table-column>
-          <el-table-column label="岗位" prop="job" />
-          <el-table-column label="工作经验" prop="type">
+          <el-table-column label="Position" prop="job" />
+          <el-table-column label="Work Experience" prop="type">
             <template #default="{ row }">
               <el-tag v-for="(t, index) in row.type" :type="getTagColor(index)" :key="index">{{
                 t
               }}</el-tag>
             </template>
           </el-table-column>
-          <el-table-column label="学历要求" prop="educational_required">
+          <el-table-column label="Educational Requirements" prop="educational_required">
             <template #default="{ row }">
               <el-tag
                 v-for="(er, index) in row.educational_required"
@@ -89,18 +89,18 @@ const { data, form, reset, pageNumChange } = useData()
               >
             </template>
           </el-table-column>
-          <el-table-column label="公司标签" prop="tags">
+          <el-table-column label="Company Tags" prop="tags">
             <template #default="{ row }">
               <el-tag v-for="(t, index) in row.tags" :type="getTagColor(index)" :key="index">{{
                 t
               }}</el-tag>
             </template>
           </el-table-column>
-          <el-table-column label="结束时间" prop="endTime" />
-          <el-table-column label="投递通道" prop="external_link">
+          <el-table-column label="End Time" prop="endTime" />
+          <el-table-column label="Application Channel" prop="external_link">
             <template #default="{ row }">
               <div v-if="typeof row.external_link == 'string'" class="line-1">
-                <el-link :href="row.external_link" target="_blank"> 点击投递 </el-link>
+                <el-link :href="row.external_link" target="_blank"> Click to Apply </el-link>
               </div>
               <div v-else style="color: var(--strong-color)">
                 <span>{{ row.external_link.app }}: </span>
@@ -108,7 +108,7 @@ const { data, form, reset, pageNumChange } = useData()
               </div>
             </template>
           </el-table-column>
-          <el-table-column label="备注" prop="remark" />
+          <el-table-column label="Remarks" prop="remark" />
         </el-table>
         <el-pagination
           @update:current-page="pageNumChange"
@@ -120,12 +120,12 @@ const { data, form, reset, pageNumChange } = useData()
       </div>
     </div>
     <div class="recruit-slide content-card" data-aos="fade-left">
-      <p class="mb-10">作者微信</p>
-      <img src="@/assets/img/wechat.jpg" alt="联系方式" class="author qr" />
+      <p class="mb-10">Author's WeChat</p>
+      <img src="@/assets/img/wechat.jpg" alt="Contact" class="author qr" />
       <br />
       <br />
-      <p class="mb-10">QQ 交流群</p>
-      <img src="@/assets/img/qqgroup.jpeg" alt="QQ交流群" class="qqgroup qr" />
+      <p class="mb-10">QQ Community</p>
+      <img src="@/assets/img/qqgroup.jpeg" alt="QQ Community" class="qqgroup qr" />
     </div>
   </div>
 </template>

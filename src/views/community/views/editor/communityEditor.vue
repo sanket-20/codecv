@@ -1,23 +1,23 @@
 <script setup lang="ts">
-import { professionals } from '@/views/community/components/community-left/constant'
-import { useCommunityArticle } from './hook'
+import { professionals } from '@/views/community/components/community-left/constant';
+import { useCommunityArticle } from './hook';
 // import '@textbus/editor/bundles/textbus.min.css'
 
-const { article, articleEditor, publishArticle } = useCommunityArticle()
+const { article, articleEditor, publishArticle } = useCommunityArticle();
 </script>
 
 <template>
   <div class="article-editor content-card" data-aos="zoom-out">
-    <span class="pointer back" @click="$router.back()">返回</span>
+    <span class="pointer back" @click="$router.back()">Back</span>
     <input
       class="title"
       type="text"
       v-model="article.title"
-      placeholder="请填写二十字以内的标题~"
+      placeholder="Please provide a title within 20 characters."
       maxlength="20"
     />
     <div class="editor" ref="articleEditor"></div>
-    <el-select placeholder="岗位方向" class="item" v-model="article.professional">
+    <el-select placeholder="Job Position" class="item" v-model="article.professional">
       <el-option
         :key="idx"
         v-for="(item, idx) in professionals"
@@ -26,8 +26,8 @@ const { article, articleEditor, publishArticle } = useCommunityArticle()
       ></el-option>
     </el-select>
     <br />
-    <button class="item primary btn" @click="publishArticle">发布</button>
-    <button class="item plain btn" @click="$router.back()">返回</button>
+    <button class="item primary btn" @click="publishArticle">Publish</button>
+    <button class="item plain btn" @click="$router.back()">Back</button>
   </div>
 </template>
 

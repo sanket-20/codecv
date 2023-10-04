@@ -18,7 +18,7 @@ const edit = (type: string) => {
     <div @click="edit(theme.type)">
       <img :src="theme.img" loading="lazy" />
       <div class="resume-card-mask">
-        <button class="btn center pointer">使用模板</button>
+        <button class="btn center pointer">Use Template</button>
       </div>
       {{ theme.name }}
     </div>

@@ -18,7 +18,7 @@ import viteImagemin from 'vite-plugin-imagemin'
 
 const viteCompressionPlugin = viteCompression({
   disable: false,
-  threshold: 10240 // 如果体积大于阈值，将被压缩，单位为b，体积过小时请不要压缩，以免适得其反
+  threshold: 10240 // If the size is greater than the threshold, it will be compressed, in bytes. Do not compress for very small sizes to avoid the opposite effect.
 })
 
 const viteImageminPlugin = viteImagemin({
@@ -60,7 +60,7 @@ export default ({ mode }) => {
       Components({
         resolvers: [ElementPlusResolver()]
       }),
-      eslint({ lintOnStart: true, cache: false }) // 打包以及启动项目开启eslint检查
+      eslint({ lintOnStart: true, cache: false }) // Enable eslint check for packaging and project startup
     ],
     resolve: {
       alias: {

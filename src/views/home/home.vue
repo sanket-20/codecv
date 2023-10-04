@@ -15,8 +15,8 @@ const { repoStars, createAnimateEffect } = useGiteeRepoStars()
 
 <template>
   <div class="tip">
-    您正在访问备用网址，请前往主站获取更加完善的功能及简历模板
-    <a class="pointer hover" href="https://codecv.top">点击访问</a>
+    You are visiting the alternate website. Please visit the main site for more features and resume templates
+    <a class="pointer hover" href="https://codecv.top">Click to visit</a>
   </div>
   <div id="home">
     <Header />
@@ -27,7 +27,7 @@ const { repoStars, createAnimateEffect } = useGiteeRepoStars()
           @click="$router.push('/template')"
           :class="['start btn pointer', { 'dark-start': isDark }]"
         >
-          快速开始 <i class="iconfont icon-goto"></i>
+          Quick Start <i class="iconfont icon-goto"></i>
         </button>
       </div>
       <div class="introduce-r">
@@ -37,16 +37,16 @@ const { repoStars, createAnimateEffect } = useGiteeRepoStars()
 
     <div class="user-comments noto-serif-sc">
       <div class="intro">
-        <h1 data-aos="zoom-in">😍 来自用户的声音</h1>
+        <h1 data-aos="zoom-in">😍 Voices from Users</h1>
         <p class="sub-intro" data-aos="zoom-in">
-          CodeCV 简历上线后得到了许多用户的喜欢，同时也收获了一些用户的反馈，看看他们是怎么说的吧～
+          CodeCV's resume has been loved by many users and has also received feedback from some users. Let's see what they have to say~
         </p>
       </div>
       <ul class="flex presentation-module">
         <li class="pointer" v-for="(comment, idx) in comments" :key="idx" data-aos="zoom-in">
           <p>{{ comment.content }}</p>
           <p class="user-comment-info">
-            <img :src="comment.avatar" alt="头像" />
+            <img :src="comment.avatar" alt="Avatar" />
             <sub>{{ comment.profession }}</sub>
           </p>
         </li>
@@ -69,10 +69,9 @@ const { repoStars, createAnimateEffect } = useGiteeRepoStars()
 
     <div class="recent-template noto-serif-sc">
       <div class="intro">
-        <h1 data-aos="zoom-in">🤩 Pramod</h1>
+        <h1 data-aos="zoom-in">🤩 Recent Templates</h1>
         <p class="sub-intro" data-aos="zoom-in">
-          如果你有喜欢的模板在这里没有，记得告诉我哦～
-          等你下次再来的时候就能看到了，你永远可以相信作者的速度！
+          If you have favorite templates that are not here, remember to let me know~ When you come back next time, you'll see them. You can always trust the author's speed!
         </p>
       </div>
       <ul class="flex presentation-module">
@@ -84,7 +83,7 @@ const { repoStars, createAnimateEffect } = useGiteeRepoStars()
           @click="$router.push({ path: '/editor', query: { type: t.type } })"
         >
           <img :src="t.img" alt="" />
-          <span>{{ t.hot }}+使用</span>
+          <span>{{ t.hot }}+Usage</span>
           <p>{{ t.name }}</p>
         </li>
       </ul>
@@ -106,7 +105,7 @@ const { repoStars, createAnimateEffect } = useGiteeRepoStars()
   width: 100%;
   overflow: hidden;
 
-  // 首页公共样式
+  // Common styles for the homepage
   .presentation-module {
     color: var(--writable-font-color);
     max-width: var(--max-width);

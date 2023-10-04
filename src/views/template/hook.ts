@@ -1,4 +1,4 @@
-import { templates, type TemplateType } from '@/templates/config'
+import { templates, TemplateType } from '@/templates/config'
 import { onMounted, Ref, ref } from 'vue'
 import { templateCategory } from './constant'
 import { getTemplateCondition } from '@/api/modules/resume'
@@ -6,12 +6,12 @@ import { errorMessage } from '@/common/message'
 import { getLocalStorage, setLocalStorage } from '@/common/localstorage'
 
 export function useCategory() {
-  const category = ref('全部')
+  const category = ref('All')
   const data: Ref<TemplateType[]> = ref([...templates.value])
 
   function queryCategory(idx: number) {
     category.value = templateCategory[idx]
-    if (category.value === '全部') {
+    if (category.value === 'All') {
       data.value = [...templates.value]
       return
     }
@@ -27,6 +27,7 @@ export function useCategory() {
 
 export function useTemplateData() {
   const ranks = ref<TemplateType[]>([])
+
   async function templateCondition() {
     const _templateData = await getTemplateCondition()
     if (!_templateData.result) {
@@ -39,6 +40,7 @@ export function useTemplateData() {
       .sort((a, b) => (b.hot as number) - (a.hot as number))
       .slice(0, 10)
   }
+
   onMounted(() => templateCondition())
 
   return {
@@ -54,11 +56,13 @@ export function useNotification() {
     flag.value = false
     setLocalStorage('notification', 'read', 1000 * 60 * 60 * 24 * 1)
   }
+
   onMounted(() => {
     if (getLocalStorage('notification') !== 'read') {
       flag.value = true
     }
   })
+
   return {
     flag,
     close

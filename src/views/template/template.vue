@@ -15,15 +15,15 @@ const { flag, close } = useNotification()
 <template>
   <div class="resume-container flex">
     <div class="resume-left-container content-card" data-aos="fade-right">
-      <NavBar button="创作模板" :tabs="templateCategory" @tab-click="queryCategory" />
+      <NavBar button="Create Template" :tabs="templateCategory" @tab-click="queryCategory" />
       <div class="resume-card-container" v-if="data.length">
         <resume-card v-for="theme in data" :key="theme.id" :theme="theme" />
       </div>
-      <Empty v-else title="暂时没有这类模板 你可以点击右上角创作模板或联系作者添加～" />
+      <Empty v-else title="No templates of this type for now. You can click on the top right corner to create a template or contact the author to add one~" />
     </div>
     <div class="resume-right-container" data-aos="fade-left">
       <div class="resume-hot-rank content-card mb-20">
-        <strong class="mb-20">简历模板热度排行</strong>
+        <strong class="mb-20">Resume Template Popularity Ranking</strong>
         <ul v-if="ranks.length">
           <li
             v-for="(t, idx) in ranks"
@@ -40,24 +40,24 @@ const { flag, close } = useNotification()
             <sub> <i class="iconfont icon-hot"></i> {{ numFormat(+String(t.hot)) }}</sub>
           </li>
         </ul>
-        <Empty title="正在加载中" v-else />
+        <Empty title="Loading..." v-else />
       </div>
       <div class="resume-notification content-card">
-        <strong>公告</strong>
+        <strong>Announcement</strong>
         <p>
-          如果你觉得项目对你有所帮助，请考虑为
-          <a href="https://github.com/acmenlei/codecv" target="_blank">项目</a>
-          点一个 <i class="iconfont icon-star"></i>，若遇到 BUG 请通过底部微信/
-          <a href="https://github.com/acmenlei/codecv/issues" target="_blank">issues</a>
-          描述并复现你所遇到的问题，良好的用户体验需要大家一起来构建，感谢大家的支持～🙏
+          If you find this project helpful, please consider giving a
+          <a href="https://github.com/acmenlei/codecv" target="_blank">star to the project</a>
+          . If you encounter any bugs, please describe and reproduce the problems through WeChat/issues in the bottom,
+          and good user experience needs everyone to build together. Thank you for your support~🙏
         </p>
       </div>
     </div>
   </div>
   <ToastModal :flag="flag" @close="close">
-    <h3 style="margin-bottom: 10px">通知</h3>
+    <h3 style="margin-bottom: 10px">Notification</h3>
     <p style="line-height: 27px">
-      近期反应同学较多，发个通知告知一下，此网址为备用网址，若需体验更多功能请前往主站<del
+      Recently, there have been many responses from students. I'm sending a notice. This website is a backup website.
+      If you need to experience more functions, please go to the main site<del
         style="color: var(--theme)"
         ><a
           target="_blank"
@@ -66,7 +66,7 @@ const { flag, close } = useNotification()
         >
           https://codecv.top</a
         ></del
-      >(主站正在备案，大概一周左右恢复使用)，可访问临时地址<a
+      >(the main site is being filed, it will be restored in about a week), you can visit the temporary address<a
         target="_blank"
         href="https://wuxiancv.com"
         style="color: var(--theme); text-decoration: none"
@@ -75,19 +75,19 @@ const { flag, close } = useNotification()
       >
     </p>
     <ol class="" style="margin: 10px 0; padding-left: 20px; line-height: 28px">
-      <li>🌈 主站导出文件更稳定</li>
-      <li>✍🏻 编写体验更好</li>
-      <li>✨ 工具更加完善</li>
-      <li>☁️ 数据云端实时保存</li>
+      <li>🌈 The main site's file export is more stable.</li>
+      <li>✍🏻 Better writing experience.</li>
+      <li>✨ More perfect tools.</li>
+      <li>☁️ Real-time saving of data in the cloud.</li>
     </ol>
-    <p>若不需要请直接忽略，谢谢配合!</p>
+    <p>If not needed, please ignore it directly. Thank you for your cooperation!</p>
     <br />
     <div class="flex group">
       <img src="@/assets/img/wechat_group.png" style="width: 30%" />
-      <h4>加入群聊获取最新情报，兄弟萌速速来水群 ✌🏻</h4>
+      <h4>Join the group chat to get the latest information, hurry up, brothers~ ✌🏻</h4>
     </div>
     <p style="text-align: center; margin-top: 20px">
-      <button class="primary btn" @click="close">知道了</button>
+      <button class="primary btn" @click="close">Got it</button>
     </p>
   </ToastModal>
 </template>
@@ -154,6 +154,7 @@ const { flag, close } = useNotification()
   align-items: center;
   gap: 40px;
 }
+
 @media screen and (max-width: 800px) {
   .resume-right-container {
     display: none;
