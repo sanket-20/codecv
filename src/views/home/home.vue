@@ -69,7 +69,7 @@ const { repoStars, createAnimateEffect } = useGiteeRepoStars()
 
     <div class="recent-template noto-serif-sc">
       <div class="intro">
-        <h1 data-aos="zoom-in">🤩 最新模板</h1>
+        <h1 data-aos="zoom-in">🤩 Pramod</h1>
         <p class="sub-intro" data-aos="zoom-in">
           如果你有喜欢的模板在这里没有，记得告诉我哦～
           等你下次再来的时候就能看到了，你永远可以相信作者的速度！
